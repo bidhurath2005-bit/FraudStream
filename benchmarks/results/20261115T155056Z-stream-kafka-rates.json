@@ -1,0 +1,1288 @@
+{
+  "args": {
+    "burst": 0,
+    "concurrency": 4,
+    "drain_timeout": 600,
+    "duration": 60.0,
+    "in_container": false,
+    "out": "",
+    "pause": 15.0,
+    "project": "fraudstream-p12",
+    "rates": "10,25,50,100,150",
+    "seed": 1212,
+    "source": "kafka",
+    "timeout": 7200
+  },
+  "benchmark": "stream",
+  "container_limits": {
+    "api": {
+      "mem_limit_mib": 1536,
+      "nano_cpus": null
+    },
+    "frontend": {
+      "mem_limit_mib": 128,
+      "nano_cpus": null
+    },
+    "kafka": {
+      "mem_limit_mib": 1024,
+      "nano_cpus": null
+    },
+    "persistence-consumer": {
+      "mem_limit_mib": 512,
+      "nano_cpus": null
+    },
+    "postgres": {
+      "mem_limit_mib": 512,
+      "nano_cpus": null
+    },
+    "redis": {
+      "mem_limit_mib": 256,
+      "nano_cpus": null
+    },
+    "spark": {
+      "mem_limit_mib": 3072,
+      "nano_cpus": null
+    }
+  },
+  "levels": [
+    {
+      "accepted": 630,
+      "accepted_eps": 10.5,
+      "burst_events": null,
+      "dead_letters": 0,
+      "drain_seconds_after_send": 4.2,
+      "duplicate_rows": 0,
+      "duration_target_s": 60.0,
+      "error_rate": 0.0,
+      "errors": {},
+      "events_generated": 630,
+      "lag": {
+        "consumer_lag_max": 23,
+        "samples": [
+          {
+            "consumer_lag": 0,
+            "spark_lag": 0,
+            "t": 1794757418.7929707
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 31,
+            "t": 1794757421.8171966
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 55,
+            "t": 1794757424.8504035
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 81,
+            "t": 1794757427.8767846
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 49,
+            "t": 1794757430.9049637
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 49,
+            "t": 1794757433.9439325
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 76,
+            "t": 1794757436.9752479
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 41,
+            "t": 1794757440.0128381
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 70,
+            "t": 1794757443.0600743
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 68,
+            "t": 1794757446.0980372
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 32,
+            "t": 1794757449.124207
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 65,
+            "t": 1794757452.1511283
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 55,
+            "t": 1794757455.194378
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 30,
+            "t": 1794757458.2462447
+          },
+          {
+            "consumer_lag": 23,
+            "spark_lag": 69,
+            "t": 1794757461.2855573
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 51,
+            "t": 1794757464.3150864
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 9,
+            "t": 1794757467.355877
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 54,
+            "t": 1794757471.390163
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 19,
+            "t": 1794757474.4454417
+          },
+          {
+            "consumer_lag": 8,
+            "spark_lag": 53,
+            "t": 1794757477.4712582
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 19,
+            "t": 1794757480.4984844
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 0,
+            "t": 1794757483.5284805
+          }
+        ],
+        "spark_lag_max": 81
+      },
+      "latency_ms": {
+        "end_to_end_ms": {
+          "max": 3870.0,
+          "mean": 2498.0,
+          "min": 987.0,
+          "n": 630,
+          "p50": 2525.0,
+          "p95": 3421.0,
+          "p99": 3753.0
+        },
+        "http_accept_ms": {
+          "n": 0
+        },
+        "persist_ms": {
+          "max": 416.0,
+          "mean": 209.0,
+          "min": 39.0,
+          "n": 630,
+          "p50": 211.0,
+          "p95": 333.0,
+          "p99": 390.0
+        },
+        "producer_ack_ms": {
+          "max": 864.0,
+          "mean": 114.8,
+          "min": 7.7,
+          "n": 630,
+          "p50": 79.1,
+          "p95": 319.8,
+          "p99": 623.5
+        },
+        "stream_ms": {
+          "max": 3589.0,
+          "mean": 2289.0,
+          "min": 923.0,
+          "n": 630,
+          "p50": 2359.0,
+          "p95": 3237.0,
+          "p99": 3510.0
+        }
+      },
+      "missing": 0,
+      "persisted": 630,
+      "persisted_eps_overall": 10.1,
+      "persisted_eps_steady": 10.5,
+      "resources": {
+        "api": {
+          "cpu_pct_max": 27.1,
+          "cpu_pct_mean": 5.5,
+          "mem_mib_max": 193.0,
+          "mem_mib_mean": 191.6,
+          "samples": 32
+        },
+        "frontend": {
+          "cpu_pct_max": 2.66,
+          "cpu_pct_mean": 0.2,
+          "mem_mib_max": 13.5,
+          "mem_mib_mean": 12.9,
+          "samples": 32
+        },
+        "kafka": {
+          "cpu_pct_max": 141.89,
+          "cpu_pct_mean": 24.3,
+          "mem_mib_max": 593.3,
+          "mem_mib_mean": 517.9,
+          "samples": 32
+        },
+        "persistence-consumer": {
+          "cpu_pct_max": 31.47,
+          "cpu_pct_mean": 7.9,
+          "mem_mib_max": 143.8,
+          "mem_mib_mean": 142.8,
+          "samples": 32
+        },
+        "postgres": {
+          "cpu_pct_max": 21.64,
+          "cpu_pct_mean": 3.1,
+          "mem_mib_max": 115.4,
+          "mem_mib_mean": 111.7,
+          "samples": 32
+        },
+        "redis": {
+          "cpu_pct_max": 8.64,
+          "cpu_pct_mean": 1.3,
+          "mem_mib_max": 7.9,
+          "mem_mib_mean": 7.1,
+          "samples": 32
+        },
+        "spark": {
+          "cpu_pct_max": 312.6,
+          "cpu_pct_mean": 187.5,
+          "mem_mib_max": 2774.0,
+          "mem_mib_mean": 2740.9,
+          "samples": 32
+        }
+      },
+      "scored_duplicates_on_kafka": 0,
+      "send_seconds": 59.92,
+      "source": "kafka",
+      "submit_call_seconds": 59.92,
+      "submitted_eps": 10.5,
+      "target_rate_eps": 10.0,
+      "window": {
+        "t_begin": 1794757418.793066,
+        "t_done": 1794757482.896356,
+        "t_sent": 1794757478.7160254
+      }
+    },
+    {
+      "accepted": 1580,
+      "accepted_eps": 26.3,
+      "burst_events": null,
+      "dead_letters": 0,
+      "drain_seconds_after_send": 4.1,
+      "duplicate_rows": 0,
+      "duration_target_s": 60.0,
+      "error_rate": 0.0,
+      "errors": {},
+      "events_generated": 1580,
+      "lag": {
+        "consumer_lag_max": 37,
+        "samples": [
+          {
+            "consumer_lag": 0,
+            "spark_lag": 0,
+            "t": 1794757501.4586158
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 87,
+            "t": 1794757504.49231
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 71,
+            "t": 1794757508.5323703
+          },
+          {
+            "consumer_lag": 31,
+            "spark_lag": 142,
+            "t": 1794757511.5645297
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 75,
+            "t": 1794757514.5981212
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 141,
+            "t": 1794757517.638468
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 104,
+            "t": 1794757520.66182
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 53,
+            "t": 1794757523.6934733
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 142,
+            "t": 1794757526.7298827
+          },
+          {
+            "consumer_lag": 37,
+            "spark_lag": 108,
+            "t": 1794757529.7632651
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 189,
+            "t": 1794757532.8152788
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 106,
+            "t": 1794757535.8636827
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 92,
+            "t": 1794757539.9249833
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 182,
+            "t": 1794757542.9516678
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 114,
+            "t": 1794757545.9924846
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 77,
+            "t": 1794757549.0258207
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 148,
+            "t": 1794757552.072996
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 83,
+            "t": 1794757555.1098628
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 160,
+            "t": 1794757558.2048879
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 140,
+            "t": 1794757561.241111
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 0,
+            "t": 1794757564.2792177
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 0,
+            "t": 1794757567.3119495
+          }
+        ],
+        "spark_lag_max": 189
+      },
+      "latency_ms": {
+        "end_to_end_ms": {
+          "max": 4127.0,
+          "mean": 2567.0,
+          "min": 1150.0,
+          "n": 1580,
+          "p50": 2575.0,
+          "p95": 3533.0,
+          "p99": 3857.0
+        },
+        "http_accept_ms": {
+          "n": 0
+        },
+        "persist_ms": {
+          "max": 788.0,
+          "mean": 342.0,
+          "min": 40.0,
+          "n": 1580,
+          "p50": 332.0,
+          "p95": 569.0,
+          "p99": 677.0
+        },
+        "producer_ack_ms": {
+          "max": 900.4,
+          "mean": 56.9,
+          "min": 6.6,
+          "n": 1580,
+          "p50": 41.0,
+          "p95": 140.0,
+          "p99": 228.6
+        },
+        "stream_ms": {
+          "max": 3694.0,
+          "mean": 2225.0,
+          "min": 973.0,
+          "n": 1580,
+          "p50": 2242.0,
+          "p95": 3173.0,
+          "p99": 3409.0
+        }
+      },
+      "missing": 0,
+      "persisted": 1580,
+      "persisted_eps_overall": 25.3,
+      "persisted_eps_steady": 27.0,
+      "resources": {
+        "api": {
+          "cpu_pct_max": 9.57,
+          "cpu_pct_mean": 1.0,
+          "mem_mib_max": 200.0,
+          "mem_mib_mean": 191.7,
+          "samples": 32
+        },
+        "frontend": {
+          "cpu_pct_max": 2.6,
+          "cpu_pct_mean": 0.2,
+          "mem_mib_max": 18.3,
+          "mem_mib_mean": 13.2,
+          "samples": 32
+        },
+        "kafka": {
+          "cpu_pct_max": 224.15,
+          "cpu_pct_mean": 28.0,
+          "mem_mib_max": 610.5,
+          "mem_mib_mean": 526.8,
+          "samples": 32
+        },
+        "persistence-consumer": {
+          "cpu_pct_max": 38.63,
+          "cpu_pct_mean": 8.1,
+          "mem_mib_max": 154.5,
+          "mem_mib_mean": 143.2,
+          "samples": 32
+        },
+        "postgres": {
+          "cpu_pct_max": 11.38,
+          "cpu_pct_mean": 2.3,
+          "mem_mib_max": 120.2,
+          "mem_mib_mean": 115.6,
+          "samples": 32
+        },
+        "redis": {
+          "cpu_pct_max": 4.49,
+          "cpu_pct_mean": 1.2,
+          "mem_mib_max": 10.7,
+          "mem_mib_mean": 7.2,
+          "samples": 32
+        },
+        "spark": {
+          "cpu_pct_max": 535.93,
+          "cpu_pct_mean": 319.1,
+          "mem_mib_max": 2862.1,
+          "mem_mib_mean": 2738.7,
+          "samples": 32
+        }
+      },
+      "scored_duplicates_on_kafka": 0,
+      "send_seconds": 59.98,
+      "source": "kafka",
+      "submit_call_seconds": 59.97,
+      "submitted_eps": 26.3,
+      "target_rate_eps": 25.0,
+      "window": {
+        "t_begin": 1794757501.4587195,
+        "t_done": 1794757565.4988186,
+        "t_sent": 1794757561.439885
+      }
+    },
+    {
+      "accepted": 3049,
+      "accepted_eps": 50.8,
+      "burst_events": null,
+      "dead_letters": 0,
+      "drain_seconds_after_send": 4.1,
+      "duplicate_rows": 0,
+      "duration_target_s": 60.0,
+      "error_rate": 0.0,
+      "errors": {},
+      "events_generated": 3049,
+      "lag": {
+        "consumer_lag_max": 101,
+        "samples": [
+          {
+            "consumer_lag": 0,
+            "spark_lag": 0,
+            "t": 1794757584.146723
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 210,
+            "t": 1794757588.1707816
+          },
+          {
+            "consumer_lag": 51,
+            "spark_lag": 261,
+            "t": 1794757591.216916
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 99,
+            "t": 1794757594.2443347
+          },
+          {
+            "consumer_lag": 78,
+            "spark_lag": 244,
+            "t": 1794757597.285193
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 226,
+            "t": 1794757600.30849
+          },
+          {
+            "consumer_lag": 101,
+            "spark_lag": 376,
+            "t": 1794757603.3540878
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 217,
+            "t": 1794757606.3760297
+          },
+          {
+            "consumer_lag": 92,
+            "spark_lag": 162,
+            "t": 1794757609.4199367
+          },
+          {
+            "consumer_lag": 74,
+            "spark_lag": 358,
+            "t": 1794757613.4440334
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 249,
+            "t": 1794757616.4648879
+          },
+          {
+            "consumer_lag": 64,
+            "spark_lag": 206,
+            "t": 1794757619.5295842
+          },
+          {
+            "consumer_lag": 101,
+            "spark_lag": 365,
+            "t": 1794757622.5555265
+          },
+          {
+            "consumer_lag": 25,
+            "spark_lag": 162,
+            "t": 1794757625.5919461
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 297,
+            "t": 1794757628.6233618
+          },
+          {
+            "consumer_lag": 82,
+            "spark_lag": 290,
+            "t": 1794757631.678661
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 164,
+            "t": 1794757634.7122858
+          },
+          {
+            "consumer_lag": 64,
+            "spark_lag": 307,
+            "t": 1794757637.7468765
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 263,
+            "t": 1794757640.7722986
+          },
+          {
+            "consumer_lag": 13,
+            "spark_lag": 101,
+            "t": 1794757643.816873
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 119,
+            "t": 1794757646.8409688
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 0,
+            "t": 1794757649.873156
+          }
+        ],
+        "spark_lag_max": 376
+      },
+      "latency_ms": {
+        "end_to_end_ms": {
+          "max": 4665.0,
+          "mean": 2657.0,
+          "min": 1046.0,
+          "n": 3049,
+          "p50": 2650.0,
+          "p95": 3738.0,
+          "p99": 4128.0
+        },
+        "http_accept_ms": {
+          "n": 0
+        },
+        "persist_ms": {
+          "max": 1108.0,
+          "mean": 477.0,
+          "min": 24.0,
+          "n": 3049,
+          "p50": 470.0,
+          "p95": 824.0,
+          "p99": 990.0
+        },
+        "producer_ack_ms": {
+          "max": 1002.1,
+          "mean": 39.0,
+          "min": 3.4,
+          "n": 3049,
+          "p50": 24.7,
+          "p95": 79.3,
+          "p99": 453.7
+        },
+        "stream_ms": {
+          "max": 3912.0,
+          "mean": 2180.0,
+          "min": 946.0,
+          "n": 3049,
+          "p50": 2179.0,
+          "p95": 3129.0,
+          "p99": 3447.0
+        }
+      },
+      "missing": 0,
+      "persisted": 3049,
+      "persisted_eps_overall": 47.7,
+      "persisted_eps_steady": 50.1,
+      "resources": {
+        "api": {
+          "cpu_pct_max": 33.19,
+          "cpu_pct_mean": 5.9,
+          "mem_mib_max": 204.6,
+          "mem_mib_mean": 192.4,
+          "samples": 31
+        },
+        "frontend": {
+          "cpu_pct_max": 3.41,
+          "cpu_pct_mean": 0.6,
+          "mem_mib_max": 14.2,
+          "mem_mib_mean": 13.1,
+          "samples": 31
+        },
+        "kafka": {
+          "cpu_pct_max": 179.88,
+          "cpu_pct_mean": 27.6,
+          "mem_mib_max": 625.9,
+          "mem_mib_mean": 539.3,
+          "samples": 31
+        },
+        "persistence-consumer": {
+          "cpu_pct_max": 48.7,
+          "cpu_pct_mean": 25.8,
+          "mem_mib_max": 143.6,
+          "mem_mib_mean": 143.0,
+          "samples": 31
+        },
+        "postgres": {
+          "cpu_pct_max": 58.43,
+          "cpu_pct_mean": 10.2,
+          "mem_mib_max": 171.4,
+          "mem_mib_mean": 124.2,
+          "samples": 31
+        },
+        "redis": {
+          "cpu_pct_max": 3.74,
+          "cpu_pct_mean": 1.3,
+          "mem_mib_max": 7.9,
+          "mem_mib_mean": 7.0,
+          "samples": 31
+        },
+        "spark": {
+          "cpu_pct_max": 459.67,
+          "cpu_pct_mean": 175.2,
+          "mem_mib_max": 2880.5,
+          "mem_mib_mean": 2864.8,
+          "samples": 31
+        }
+      },
+      "scored_duplicates_on_kafka": 0,
+      "send_seconds": 60.0,
+      "source": "kafka",
+      "submit_call_seconds": 59.99,
+      "submitted_eps": 50.8,
+      "target_rate_eps": 50.0,
+      "window": {
+        "t_begin": 1794757584.1468532,
+        "t_done": 1794757648.2021224,
+        "t_sent": 1794757644.1435306
+      }
+    },
+    {
+      "accepted": 6269,
+      "accepted_eps": 104.5,
+      "burst_events": null,
+      "dead_letters": 0,
+      "drain_seconds_after_send": 4.1,
+      "duplicate_rows": 0,
+      "duration_target_s": 60.0,
+      "error_rate": 0.0,
+      "errors": {},
+      "events_generated": 6269,
+      "lag": {
+        "consumer_lag_max": 320,
+        "samples": [
+          {
+            "consumer_lag": 0,
+            "spark_lag": 0,
+            "t": 1794757667.9911096
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 293,
+            "t": 1794757671.014568
+          },
+          {
+            "consumer_lag": 142,
+            "spark_lag": 211,
+            "t": 1794757674.0521462
+          },
+          {
+            "consumer_lag": 181,
+            "spark_lag": 527,
+            "t": 1794757677.0958185
+          },
+          {
+            "consumer_lag": 196,
+            "spark_lag": 412,
+            "t": 1794757680.1254597
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 720,
+            "t": 1794757683.1784105
+          },
+          {
+            "consumer_lag": 184,
+            "spark_lag": 411,
+            "t": 1794757686.2047632
+          },
+          {
+            "consumer_lag": 43,
+            "spark_lag": 376,
+            "t": 1794757690.2583122
+          },
+          {
+            "consumer_lag": 77,
+            "spark_lag": 671,
+            "t": 1794757693.319917
+          },
+          {
+            "consumer_lag": 131,
+            "spark_lag": 536,
+            "t": 1794757696.3462029
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 391,
+            "t": 1794757699.399598
+          },
+          {
+            "consumer_lag": 213,
+            "spark_lag": 703,
+            "t": 1794757702.422231
+          },
+          {
+            "consumer_lag": 115,
+            "spark_lag": 350,
+            "t": 1794757705.474301
+          },
+          {
+            "consumer_lag": 198,
+            "spark_lag": 645,
+            "t": 1794757708.5377126
+          },
+          {
+            "consumer_lag": 89,
+            "spark_lag": 560,
+            "t": 1794757711.5811546
+          },
+          {
+            "consumer_lag": 153,
+            "spark_lag": 485,
+            "t": 1794757714.6126585
+          },
+          {
+            "consumer_lag": 55,
+            "spark_lag": 818,
+            "t": 1794757717.6638114
+          },
+          {
+            "consumer_lag": 240,
+            "spark_lag": 643,
+            "t": 1794757721.6980522
+          },
+          {
+            "consumer_lag": 320,
+            "spark_lag": 387,
+            "t": 1794757724.763937
+          },
+          {
+            "consumer_lag": 82,
+            "spark_lag": 728,
+            "t": 1794757727.8002236
+          },
+          {
+            "consumer_lag": 204,
+            "spark_lag": 204,
+            "t": 1794757730.8382
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 204,
+            "t": 1794757733.8627348
+          }
+        ],
+        "spark_lag_max": 818
+      },
+      "latency_ms": {
+        "end_to_end_ms": {
+          "max": 7449.0,
+          "mean": 3848.0,
+          "min": 1441.0,
+          "n": 6269,
+          "p50": 3786.0,
+          "p95": 5570.0,
+          "p99": 6435.0
+        },
+        "http_accept_ms": {
+          "n": 0
+        },
+        "persist_ms": {
+          "max": 2639.0,
+          "mean": 1082.0,
+          "min": 70.0,
+          "n": 6269,
+          "p50": 1069.0,
+          "p95": 2031.0,
+          "p99": 2488.0
+        },
+        "producer_ack_ms": {
+          "max": 1022.1,
+          "mean": 30.3,
+          "min": 3.1,
+          "n": 6269,
+          "p50": 18.8,
+          "p95": 46.8,
+          "p99": 458.1
+        },
+        "stream_ms": {
+          "max": 4927.0,
+          "mean": 2766.0,
+          "min": 1215.0,
+          "n": 6269,
+          "p50": 2737.0,
+          "p95": 3967.0,
+          "p99": 4492.0
+        }
+      },
+      "missing": 0,
+      "persisted": 6269,
+      "persisted_eps_overall": 98.2,
+      "persisted_eps_steady": 104.0,
+      "resources": {
+        "api": {
+          "cpu_pct_max": 24.21,
+          "cpu_pct_mean": 2.1,
+          "mem_mib_max": 192.6,
+          "mem_mib_mean": 191.3,
+          "samples": 32
+        },
+        "frontend": {
+          "cpu_pct_max": 0.0,
+          "cpu_pct_mean": 0.0,
+          "mem_mib_max": 14.5,
+          "mem_mib_mean": 13.3,
+          "samples": 32
+        },
+        "kafka": {
+          "cpu_pct_max": 204.94,
+          "cpu_pct_mean": 37.3,
+          "mem_mib_max": 688.3,
+          "mem_mib_mean": 604.3,
+          "samples": 32
+        },
+        "persistence-consumer": {
+          "cpu_pct_max": 78.53,
+          "cpu_pct_mean": 51.1,
+          "mem_mib_max": 153.7,
+          "mem_mib_mean": 143.4,
+          "samples": 32
+        },
+        "postgres": {
+          "cpu_pct_max": 39.97,
+          "cpu_pct_mean": 18.8,
+          "mem_mib_max": 167.4,
+          "mem_mib_mean": 138.9,
+          "samples": 32
+        },
+        "redis": {
+          "cpu_pct_max": 5.6,
+          "cpu_pct_mean": 2.0,
+          "mem_mib_max": 9.7,
+          "mem_mib_mean": 8.0,
+          "samples": 32
+        },
+        "spark": {
+          "cpu_pct_max": 773.05,
+          "cpu_pct_mean": 395.5,
+          "mem_mib_max": 3004.4,
+          "mem_mib_mean": 2942.0,
+          "samples": 32
+        }
+      },
+      "scored_duplicates_on_kafka": 0,
+      "send_seconds": 59.98,
+      "source": "kafka",
+      "submit_call_seconds": 59.98,
+      "submitted_eps": 104.5,
+      "target_rate_eps": 100.0,
+      "window": {
+        "t_begin": 1794757667.991186,
+        "t_done": 1794757732.1091805,
+        "t_sent": 1794757727.975149
+      }
+    },
+    {
+      "accepted": 9190,
+      "accepted_eps": 152.7,
+      "burst_events": null,
+      "dead_letters": 0,
+      "drain_seconds_after_send": 22.5,
+      "duplicate_rows": 0,
+      "duration_target_s": 60.0,
+      "error_rate": 0.0,
+      "errors": {},
+      "events_generated": 9190,
+      "lag": {
+        "consumer_lag_max": 1221,
+        "samples": [
+          {
+            "consumer_lag": 0,
+            "spark_lag": 0,
+            "t": 1794757750.9831858
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 458,
+            "t": 1794757754.008943
+          },
+          {
+            "consumer_lag": 370,
+            "spark_lag": 803,
+            "t": 1794757757.077333
+          },
+          {
+            "consumer_lag": 233,
+            "spark_lag": 517,
+            "t": 1794757760.1295831
+          },
+          {
+            "consumer_lag": 197,
+            "spark_lag": 974,
+            "t": 1794757763.2003415
+          },
+          {
+            "consumer_lag": 188,
+            "spark_lag": 1090,
+            "t": 1794757766.2270973
+          },
+          {
+            "consumer_lag": 442,
+            "spark_lag": 764,
+            "t": 1794757769.2636552
+          },
+          {
+            "consumer_lag": 563,
+            "spark_lag": 1223,
+            "t": 1794757772.2975345
+          },
+          {
+            "consumer_lag": 412,
+            "spark_lag": 869,
+            "t": 1794757775.33235
+          },
+          {
+            "consumer_lag": 481,
+            "spark_lag": 1327,
+            "t": 1794757778.3903394
+          },
+          {
+            "consumer_lag": 653,
+            "spark_lag": 1295,
+            "t": 1794757781.4313257
+          },
+          {
+            "consumer_lag": 777,
+            "spark_lag": 680,
+            "t": 1794757784.4695342
+          },
+          {
+            "consumer_lag": 448,
+            "spark_lag": 1149,
+            "t": 1794757787.530593
+          },
+          {
+            "consumer_lag": 561,
+            "spark_lag": 1040,
+            "t": 1794757790.5605829
+          },
+          {
+            "consumer_lag": 591,
+            "spark_lag": 1525,
+            "t": 1794757793.599015
+          },
+          {
+            "consumer_lag": 754,
+            "spark_lag": 2020,
+            "t": 1794757796.6222486
+          },
+          {
+            "consumer_lag": 554,
+            "spark_lag": 1697,
+            "t": 1794757799.6770988
+          },
+          {
+            "consumer_lag": 734,
+            "spark_lag": 2152,
+            "t": 1794757802.7068505
+          },
+          {
+            "consumer_lag": 816,
+            "spark_lag": 2620,
+            "t": 1794757805.7346177
+          },
+          {
+            "consumer_lag": 616,
+            "spark_lag": 2163,
+            "t": 1794757809.7736096
+          },
+          {
+            "consumer_lag": 895,
+            "spark_lag": 2397,
+            "t": 1794757812.7997193
+          },
+          {
+            "consumer_lag": 1221,
+            "spark_lag": 2397,
+            "t": 1794757815.8229363
+          },
+          {
+            "consumer_lag": 1021,
+            "spark_lag": 2397,
+            "t": 1794757818.847047
+          },
+          {
+            "consumer_lag": 1137,
+            "spark_lag": 992,
+            "t": 1794757821.8929875
+          },
+          {
+            "consumer_lag": 1213,
+            "spark_lag": 0,
+            "t": 1794757824.914907
+          },
+          {
+            "consumer_lag": 813,
+            "spark_lag": 0,
+            "t": 1794757827.9382904
+          },
+          {
+            "consumer_lag": 413,
+            "spark_lag": 0,
+            "t": 1794757830.9663801
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 0,
+            "t": 1794757833.9964094
+          }
+        ],
+        "spark_lag_max": 2620
+      },
+      "latency_ms": {
+        "end_to_end_ms": {
+          "max": 29395.0,
+          "mean": 12303.0,
+          "min": 1017.0,
+          "n": 9190,
+          "p50": 10424.0,
+          "p95": 23955.0,
+          "p99": 26908.0
+        },
+        "http_accept_ms": {
+          "n": 0
+        },
+        "persist_ms": {
+          "max": 15335.0,
+          "mean": 5870.0,
+          "min": 164.0,
+          "n": 9190,
+          "p50": 4731.0,
+          "p95": 13157.0,
+          "p99": 14792.0
+        },
+        "producer_ack_ms": {
+          "max": 1019.4,
+          "mean": 76.3,
+          "min": 4.3,
+          "n": 9190,
+          "p50": 32.4,
+          "p95": 220.0,
+          "p99": 451.4
+        },
+        "stream_ms": {
+          "max": 15511.0,
+          "mean": 6432.0,
+          "min": 772.0,
+          "n": 9190,
+          "p50": 5342.0,
+          "p95": 13536.0,
+          "p99": 14973.0
+        }
+      },
+      "missing": 0,
+      "persisted": 9190,
+      "persisted_eps_overall": 112.4,
+      "persisted_eps_steady": 115.1,
+      "resources": {
+        "api": {
+          "cpu_pct_max": 32.81,
+          "cpu_pct_mean": 4.0,
+          "mem_mib_max": 203.5,
+          "mem_mib_mean": 191.9,
+          "samples": 41
+        },
+        "frontend": {
+          "cpu_pct_max": 2.99,
+          "cpu_pct_mean": 0.5,
+          "mem_mib_max": 14.9,
+          "mem_mib_mean": 13.6,
+          "samples": 41
+        },
+        "kafka": {
+          "cpu_pct_max": 200.41,
+          "cpu_pct_mean": 32.4,
+          "mem_mib_max": 762.9,
+          "mem_mib_mean": 673.8,
+          "samples": 41
+        },
+        "persistence-consumer": {
+          "cpu_pct_max": 69.36,
+          "cpu_pct_mean": 47.8,
+          "mem_mib_max": 149.0,
+          "mem_mib_mean": 145.5,
+          "samples": 41
+        },
+        "postgres": {
+          "cpu_pct_max": 108.64,
+          "cpu_pct_mean": 18.7,
+          "mem_mib_max": 226.8,
+          "mem_mib_mean": 168.1,
+          "samples": 41
+        },
+        "redis": {
+          "cpu_pct_max": 5.66,
+          "cpu_pct_mean": 1.9,
+          "mem_mib_max": 11.7,
+          "mem_mib_mean": 10.5,
+          "samples": 41
+        },
+        "spark": {
+          "cpu_pct_max": 597.56,
+          "cpu_pct_mean": 208.9,
+          "mem_mib_max": 3053.6,
+          "mem_mib_mean": 3000.1,
+          "samples": 41
+        }
+      },
+      "scored_duplicates_on_kafka": 0,
+      "send_seconds": 60.19,
+      "source": "kafka",
+      "submit_call_seconds": 60.0,
+      "submitted_eps": 153.2,
+      "target_rate_eps": 150.0,
+      "window": {
+        "t_begin": 1794757750.9832544,
+        "t_done": 1794757833.6796145,
+        "t_sent": 1794757811.1713393
+      }
+    }
+  ],
+  "machine": {
+    "docker": {
+      "kernel": "6.18.58.1-microsoft-standard-WSL2",
+      "os": "Docker Desktop",
+      "server": "29.9.2",
+      "vm_cpus": 16,
+      "vm_mem_gib": 7.61
+    },
+    "host_ram_gb": 15.7,
+    "logical_cpus": 16,
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10"
+  },
+  "measured": true,
+  "project": "fraudstream-p12",
+  "started_at": "2026-11-15T15:43:37.503835+00:00",
+  "volume_bytes_after": {
+    "kafka-data": 2023610779,
+    "postgres-data": 280895205,
+    "redis-data": 1381646,
+    "spark-checkpoints": 138129283
+  },
+  "volume_bytes_before": {
+    "kafka-data": 1887196056,
+    "postgres-data": 166584037,
+    "redis-data": 788355,
+    "spark-checkpoints": 55207601
+  },
+  "volume_growth_bytes": {
+    "kafka-data": 136414723,
+    "postgres-data": 114311168,
+    "redis-data": 593291,
+    "spark-checkpoints": 82921682
+  }
+}

@@ -1,0 +1,32 @@
+# Phase 12 ISOLATED test environment — an override for a SEPARATE compose project.
+#
+#   python scripts/isolated_env.py                      # once: .env.isolated with fresh random secrets + other ports
+#   docker compose -p fraudstream-p12 --env-file .env.isolated \
+#       -f docker-compose.yml -f infrastructure/isolated/docker-compose.isolated.yml --profile distributed up -d
+#
+# Why an override is needed: the base file pins the network name to "fraudstream", so a second project would join
+# the LIVE network and collide on the service DNS names (kafka, postgres, api, ...). Containers and named volumes are
+# already prefixed by the project name (-p). Host ports come from .env.isolated (all different from the live stack).
+#
+# ARTIFACTS_HOST_DIR / DATASETS_HOST_DIR (defaults: the repository copies, always READ-ONLY here) let the isolated
+# stack run on a RESTORED copy of the model artifacts and datasets (restore verification).
+
+networks:
+  fraudstream:
+    name: ${FRAUDSTREAM_NETWORK:-fraudstream-p12}
+
+services:
+  spark:
+    volumes:
+      - ${ARTIFACTS_HOST_DIR:-./ml/artifacts}:/app/ml/artifacts:ro
+  api:
+    volumes:
+      - ${ARTIFACTS_HOST_DIR:-./ml/artifacts}:/app/ml/artifacts:ro
+      - ${DATASETS_HOST_DIR:-./data/synthetic}:/data/synthetic:ro
+  api-local:
+    volumes:
+      - ${ARTIFACTS_HOST_DIR:-./ml/artifacts}:/app/ml/artifacts:ro
+      - ${DATASETS_HOST_DIR:-./data/synthetic}:/data/synthetic:ro
+  python-processor:
+    volumes:
+      - ${ARTIFACTS_HOST_DIR:-./ml/artifacts}:/app/ml/artifacts:ro

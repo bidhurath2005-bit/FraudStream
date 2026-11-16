@@ -1,0 +1,252 @@
+{
+  "args": {
+    "burst": 0,
+    "concurrency": 4,
+    "drain_timeout": 600,
+    "duration": 20.0,
+    "in_container": false,
+    "out": "",
+    "pause": 1.0,
+    "project": "fraudstream-p12",
+    "rates": "10",
+    "seed": 1212,
+    "source": "kafka",
+    "timeout": 7200
+  },
+  "benchmark": "stream",
+  "container_limits": {
+    "api": {
+      "mem_limit_mib": 1536,
+      "nano_cpus": null
+    },
+    "frontend": {
+      "mem_limit_mib": 128,
+      "nano_cpus": null
+    },
+    "kafka": {
+      "mem_limit_mib": 1024,
+      "nano_cpus": null
+    },
+    "persistence-consumer": {
+      "mem_limit_mib": 512,
+      "nano_cpus": null
+    },
+    "postgres": {
+      "mem_limit_mib": 512,
+      "nano_cpus": null
+    },
+    "redis": {
+      "mem_limit_mib": 256,
+      "nano_cpus": null
+    },
+    "spark": {
+      "mem_limit_mib": 3072,
+      "nano_cpus": null
+    }
+  },
+  "levels": [
+    {
+      "accepted": 205,
+      "accepted_eps": 10.2,
+      "burst_events": null,
+      "dead_letters": 0,
+      "drain_seconds_after_send": 4.2,
+      "duplicate_rows": 0,
+      "duration_target_s": 20.0,
+      "error_rate": 0.0,
+      "errors": {},
+      "events_generated": 205,
+      "lag": {
+        "consumer_lag_max": 0,
+        "samples": [
+          {
+            "consumer_lag": 0,
+            "spark_lag": 0,
+            "t": 1794757295.3430166
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 27,
+            "t": 1794757298.3836899
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 67,
+            "t": 1794757301.4167676
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 100,
+            "t": 1794757304.483158
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 139,
+            "t": 1794757307.543517
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 146,
+            "t": 1794757310.5929372
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 40,
+            "t": 1794757313.6563976
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 54,
+            "t": 1794757316.6814396
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 8,
+            "t": 1794757319.712904
+          }
+        ],
+        "spark_lag_max": 146
+      },
+      "latency_ms": {
+        "end_to_end_ms": {
+          "max": 10549.0,
+          "mean": 5329.0,
+          "min": 1701.0,
+          "n": 205,
+          "p50": 4004.0,
+          "p95": 10030.0,
+          "p99": 10297.0
+        },
+        "http_accept_ms": {
+          "n": 0
+        },
+        "persist_ms": {
+          "max": 875.0,
+          "mean": 388.0,
+          "min": 28.0,
+          "n": 205,
+          "p50": 274.0,
+          "p95": 832.0,
+          "p99": 867.0
+        },
+        "producer_ack_ms": {
+          "max": 1105.0,
+          "mean": 130.7,
+          "min": 4.8,
+          "n": 205,
+          "p50": 78.7,
+          "p95": 353.8,
+          "p99": 926.7
+        },
+        "stream_ms": {
+          "max": 9834.0,
+          "mean": 4942.0,
+          "min": 1430.0,
+          "n": 205,
+          "p50": 3578.0,
+          "p95": 9507.0,
+          "p99": 9761.0
+        }
+      },
+      "missing": 0,
+      "persisted": 205,
+      "persisted_eps_overall": 8.9,
+      "persisted_eps_steady": 15.4,
+      "resources": {
+        "api": {
+          "cpu_pct_max": 37.46,
+          "cpu_pct_mean": 7.4,
+          "mem_mib_max": 192.1,
+          "mem_mib_mean": 191.3,
+          "samples": 12
+        },
+        "frontend": {
+          "cpu_pct_max": 3.29,
+          "cpu_pct_mean": 0.7,
+          "mem_mib_max": 17.7,
+          "mem_mib_mean": 13.2,
+          "samples": 12
+        },
+        "kafka": {
+          "cpu_pct_max": 256.84,
+          "cpu_pct_mean": 50.0,
+          "mem_mib_max": 533.1,
+          "mem_mib_mean": 477.5,
+          "samples": 12
+        },
+        "persistence-consumer": {
+          "cpu_pct_max": 34.78,
+          "cpu_pct_mean": 10.5,
+          "mem_mib_max": 142.4,
+          "mem_mib_mean": 140.9,
+          "samples": 12
+        },
+        "postgres": {
+          "cpu_pct_max": 9.74,
+          "cpu_pct_mean": 2.9,
+          "mem_mib_max": 97.0,
+          "mem_mib_mean": 93.3,
+          "samples": 12
+        },
+        "redis": {
+          "cpu_pct_max": 6.66,
+          "cpu_pct_mean": 1.3,
+          "mem_mib_max": 5.9,
+          "mem_mib_mean": 5.0,
+          "samples": 12
+        },
+        "spark": {
+          "cpu_pct_max": 906.06,
+          "cpu_pct_mean": 418.0,
+          "mem_mib_max": 2331.6,
+          "mem_mib_mean": 1882.6,
+          "samples": 12
+        }
+      },
+      "scored_duplicates_on_kafka": 0,
+      "send_seconds": 20.0,
+      "source": "kafka",
+      "submitted_eps": 10.2,
+      "target_rate_eps": 10.0,
+      "window": {
+        "t_begin": 1794757295.3431103,
+        "t_done": 1794757319.5417874,
+        "t_sent": 1794757315.3468897
+      }
+    }
+  ],
+  "machine": {
+    "docker": {
+      "kernel": "6.18.58.1-microsoft-standard-WSL2",
+      "os": "Docker Desktop",
+      "server": "29.9.2",
+      "vm_cpus": 16,
+      "vm_mem_gib": 7.61
+    },
+    "host_ram_gb": 15.7,
+    "logical_cpus": 16,
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10"
+  },
+  "measured": true,
+  "project": "fraudstream-p12",
+  "started_at": "2026-11-15T15:41:33.797184+00:00",
+  "volume_bytes_after": {
+    "kafka-data": 1862442591,
+    "postgres-data": 150683365,
+    "redis-data": 676168,
+    "spark-checkpoints": 56092252
+  },
+  "volume_bytes_before": {
+    "kafka-data": 1861022011,
+    "postgres-data": 150535909,
+    "redis-data": 635478,
+    "spark-checkpoints": 53878338
+  },
+  "volume_growth_bytes": {
+    "kafka-data": 1420580,
+    "postgres-data": 147456,
+    "redis-data": 40690,
+    "spark-checkpoints": 2213914
+  }
+}

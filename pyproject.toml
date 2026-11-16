@@ -1,0 +1,28 @@
+[project]
+name = "fraudstream"
+version = "1.0.0"
+description = "FraudStream — Financial Intelligence & Risk Operations Center (educational, synthetic data only)"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+
+[tool.pytest.ini_options]
+pythonpath = [".", "backend"]
+testpaths = ["simulator/tests", "ml/tests", "backend/tests", "streaming/tests", "infrastructure/tests"]
+addopts = "-ra --strict-markers -m 'not integration'"
+markers = [
+    "integration: requires the distributed infrastructure (docker compose: Kafka, PostgreSQL, Redis)",
+    "spark: requires a working Spark runtime (runs inside the spark container)",
+    "slow: long-running tests",
+    "containers: requires the running Docker Compose stack (profile distributed)",
+    "disruptive: crashes/stops containers of the running stack and verifies recovery",
+]
+filterwarnings = ["ignore::DeprecationWarning:xgboost.*", "ignore::FutureWarning"]
+
+[tool.ruff]
+line-length = 125
+target-version = "py312"
+extend-exclude = ["backend/migrations/versions", "frontend"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["B008", "E731"]

@@ -1,0 +1,222 @@
+# FraudStream CI - fast quality gates on every pull request and push to main.
+#
+# Jobs (all on GitHub-hosted ubuntu-24.04 runners; nothing is deployed, nothing outside the runner is touched):
+#   backend            ruff (correctness rules) + the default pytest suite (unit, backend API, ML, streaming logic)
+#   frontend           npm ci (lockfile) + Vitest + TypeScript type check + production build
+#   compose            docker compose config for every profile + referenced-file checks (no container is started)
+#   security           repository hygiene, gitleaks (full history), pip-audit + npm audit gated on a reviewed baseline
+#   kafka-integration  real Kafka + PostgreSQL + Redis in a throw-away compose project on the runner
+#
+# The full containerised stack (Spark, container suite incl. failure injection, Playwright E2E on both profiles,
+# image scan) is the separate, manually triggered / weekly workflow full-stack.yml.
+#
+# No repository secrets are used. Throw-away credentials for the integration stack are generated on the runner by
+# scripts/ci/ci_env.py and masked. Third-party actions are pinned to commit SHAs (tag in the trailing comment;
+# Dependabot keeps them current, see .github/dependabot.yml).
+
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: "3.12"   # requires-python >=3.12; the app and Spark images use python:3.12-slim-bookworm
+  NODE_VERSION: "22"       # frontend image builds with node:22-alpine
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  FORCE_COLOR: "1"
+
+jobs:
+  backend:
+    name: Backend · ruff + pytest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install the PDF fonts of the app image (lets the CJK PDF test run instead of skipping)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q --no-install-recommends fonts-dejavu-core fonts-droid-fallback fonts-nanum
+
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: backend/requirements*.txt
+
+      - name: Install pinned dependencies (backend/requirements-dev.txt)
+        run: python -m pip install -r backend/requirements-dev.txt
+
+      - name: Ruff - correctness rules (syntax errors, undefined names, unused imports)
+        run: python -m ruff check . --select E9,F --output-format=github
+
+      - name: Ruff - full project ruleset on the CI scripts
+        run: python -m ruff check scripts/ci --output-format=github
+
+      - name: pytest - default suite (integration/container tests are deselected by pyproject addopts)
+        run: python -m pytest -p no:cacheprovider --junitxml=test-results/pytest.xml -o junit_family=xunit2
+
+      - name: Test summary
+        if: always()
+        run: python scripts/ci/junit_summary.py "Backend - pytest default suite" test-results/pytest.xml >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: backend-test-results
+          path: test-results/
+          retention-days: 14
+
+  frontend:
+    name: Frontend · Vitest + typecheck + build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install from the lockfile (npm ci; never rewrites package-lock.json)
+        run: npm ci --no-audit --no-fund
+
+      - name: Unit tests (Vitest)
+        run: npx vitest run --reporter=default --reporter=junit --outputFile.junit=test-results/vitest.xml
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Production build
+        run: npm run build
+
+      - name: Test summary
+        if: always()
+        working-directory: .
+        run: python3 scripts/ci/junit_summary.py "Frontend - Vitest" frontend/test-results/vitest.xml >> "$GITHUB_STEP_SUMMARY"
+
+  compose:
+    name: Docker Compose configuration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Validate every profile + isolated override, check referenced files (nothing is started)
+        run: |
+          docker compose version
+          python scripts/ci/check_compose.py --env-file .env.example
+
+  security:
+    name: Security · hygiene, secrets, dependencies
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0   # gitleaks scans the whole history
+
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Repository hygiene (no env files, databases, dumps, backups, password hashes, keys)
+        run: python scripts/ci/check_repo_hygiene.py
+
+      - name: Secret scan - gitleaks v8.30.1 (image pinned by digest), full Git history, findings redacted
+        run: |
+          docker run --rm --user "$(id -u):$(id -g)" -v "$PWD:/repo" \
+            ghcr.io/gitleaks/gitleaks@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f \
+            git /repo --redact --no-banner --exit-code 1
+
+      - name: Python dependency audit (pip-audit 2.10.1; all requirement files incl. the Spark image)
+        run: |
+          python -m pip install -q pip-audit==2.10.1
+          # pip-audit exits 1 whenever any advisory exists; the baseline gate below decides pass/fail.
+          python -m pip_audit -r backend/requirements.txt -r backend/requirements-dev.txt \
+            -r infrastructure/spark/requirements-spark.txt --progress-spinner off -f json -o pip-audit.json || true
+          test -s pip-audit.json
+
+      - name: Frontend dependency audit (npm audit on package-lock.json, dev + prod)
+        working-directory: frontend
+        run: |
+          npm audit --json > ../npm-audit.json || true
+          test -s ../npm-audit.json
+
+      - name: Gate - fail on any advisory not in the reviewed baseline
+        run: |
+          python scripts/ci/audit_gate.py --pip-json pip-audit.json --npm-json npm-audit.json \
+            --baseline .github/security/audit-baseline.json --summary "$GITHUB_STEP_SUMMARY"
+
+  kafka-integration:
+    name: Integration · Kafka + PostgreSQL + Redis
+    needs: backend
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PROJECT: fraudstream-ci
+      COMPOSE: docker compose -p fraudstream-ci --env-file .env.ci -f docker-compose.yml -f infrastructure/isolated/docker-compose.isolated.yml
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: backend/requirements*.txt
+
+      - name: Install pinned dependencies
+        run: python -m pip install -r backend/requirements-dev.txt
+
+      - name: Throw-away env file (random secrets generated on this runner; never printed)
+        run: python scripts/ci/ci_env.py create --out .env.ci --project "$PROJECT"
+
+      - name: Start Kafka, PostgreSQL and Redis (+ topic creation) in the isolated project
+        run: |
+          $COMPOSE up -d kafka postgres redis kafka-init
+          python scripts/ci/wait_for_stack.py --project "$PROJECT" --env-file .env.ci \
+            --services kafka,postgres,redis,kafka-init --timeout 300
+
+      - name: Export integration-test variables (secrets masked first)
+        run: python scripts/ci/ci_env.py export --env-file .env.ci --project "$PROJECT" --github-env
+
+      - name: Kafka integration tests (own topics + temporary database; incl. broker restart)
+        run: |
+          python -m pytest -m "integration and not spark" streaming/tests -p no:cacheprovider \
+            --junitxml=test-results/kafka-it.xml -o junit_family=xunit2
+
+      - name: Test summary
+        if: always()
+        run: python scripts/ci/junit_summary.py "Kafka integration" test-results/kafka-it.xml >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Service logs on failure
+        if: failure()
+        run: $COMPOSE logs --no-color --tail 200 kafka postgres redis kafka-init

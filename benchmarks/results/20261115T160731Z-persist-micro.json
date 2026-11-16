@@ -1,0 +1,12 @@
+{
+  "batch": 200,
+  "batched_ms": 8.44,
+  "batched_tx_eps": 118.5,
+  "benchmark": "persist-micro",
+  "client": "Windows host -> isolated PostgreSQL 127.0.0.1",
+  "events_each": 2000,
+  "measured": true,
+  "per_event_ms": 13.53,
+  "per_event_tx_eps": 73.9,
+  "speedup": 1.6
+}

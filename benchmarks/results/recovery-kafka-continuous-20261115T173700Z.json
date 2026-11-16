@@ -1,0 +1,13 @@
+{
+  "project": "fraudstream-p12",
+  "produced": 1750,
+  "acknowledged": 1556,
+  "delivery_failed": 194,
+  "failure_reasons": [
+    "KafkaError{code=_MSG_TIMED_OUT,val=-192,str=\"Local: Message timed out\"}"
+  ],
+  "persisted_total": 1556,
+  "outage_seconds": 20.5,
+  "seconds_restart_to_all_acked_persisted": 55.6,
+  "seconds_restart_to_zero_lag": 56.0
+}

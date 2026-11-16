@@ -1,0 +1,58 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/e2e-results/
+frontend/playwright-report/
+frontend/test-results/
+*.tsbuildinfo
+
+# Secrets & local credentials
+.env
+.env.*
+!.env.example
+.dev-credentials.txt
+
+# Local data & databases (dataset regenerated reproducibly: scripts/ci/prepare_dataset.py; see docs/DATA_AND_ML.md)
+data/*
+!data/synthetic/
+data/synthetic/*
+!data/synthetic/synthetic-fraudstream-v1.0.jsonl.gz
+!data/synthetic/synthetic-fraudstream-v1.0.meta.json
+# Runtime outputs
+ml/artifacts/runtime_config.json
+ml/artifacts/runtime_config.json.tmp
+infrastructure/spark/checkpoints/
+logs/
+*.log
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Spark integration test logs
+streaming/tests/spark-it-last.log
+
+# Phase 14: CI / local-reproduction outputs (.env.ci is already covered by .env.*)
+test-results/
+e2e-distributed/
+pip-audit.json
+npm-audit.json
+trivy-*.txt
+stack-logs.txt
+
+# Phase 12: backups / restored copies / benchmark temp files (never in Git or a package)
+backups/
+FraudStream-backups/
+p12-restore/
+benchmarks/results/.stream-*.json

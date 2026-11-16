@@ -1,0 +1,23 @@
+{
+  "reviewed": "2026-11-16",
+  "accepted": {
+    "npm:@vitest/mocker:GHSA-82fw-gwwq-j7x9": "moderate: Vitest: Path Traversal / Arbitrary File Read via @vitest/mocker Redirect Mock",
+    "npm:@vitest/mocker:GHSA-qxg6-89mg-rqv8": "moderate: Vitest: Code injection via unauthenticated manual mock registration",
+    "npm:esbuild:GHSA-67mh-4wv8-2f99": "moderate: esbuild enables any website to send any requests to the development server and read the re",
+    "npm:react-router:GHSA-337j-9hxr-rhxg": "moderate: React Router: Arbitrary Constructor Injection via deserializeErrors() in React Router SSR ",
+    "npm:react-router:GHSA-wrjc-x8rr-h8h6": "moderate: React Router: Open redirect via backslash in <Link> and useNavigate (CVE-2025-68470 bypass",
+    "npm:tinypool:GHSA-5gmw-xhrv-c9v3": "critical: Tinypool: Prototype Pollution gadget in worker options leads to Remote Code Execution",
+    "npm:tinypool:GHSA-85c8-ppgw-ccpr": "critical: Tinypool: Prototype Pollution Gadget to RCE in run() options",
+    "npm:vite:GHSA-4w7w-66w2-5vf9": "moderate: Vite Vulnerable to Path Traversal in Optimized Deps `.map` Handling",
+    "npm:vite:GHSA-587h-7wmj-h5pm": "high: launch-editor: `fs.existsSync()` existence check can be bypassed on Windows",
+    "npm:vite:GHSA-698v-4r3x-3vcv": "moderate: launch-editor: escapeCmdArgs() omits % escaping on Windows",
+    "npm:vite:GHSA-9jrq-w75r-8gcw": "low: Vite: Cross origin script execution through Vite custom middleware",
+    "npm:vite:GHSA-fx2h-pf6j-xcff": "moderate: vite: `server.fs.deny` bypass on Windows alternate paths",
+    "npm:vite:GHSA-r825-w8mm-5pxw": "moderate: launch-editor: Editor CLI flag misinterpretation causing arbitrary command execution for s",
+    "npm:vite:GHSA-rq7h-c2jc-7f22": "moderate: Vite: Files outside `server.fs.allow` could be served when project paths match system path",
+    "npm:vite:GHSA-v6wh-96g9-6wx3": "moderate: launch-editor: NTLMv2 hash disclosure via UNC path handling on Windows",
+    "npm:vitest:GHSA-5xrq-8626-4rwp": "critical: When Vitest UI server is listening, arbitrary file can be read and executed",
+    "npm:vitest:GHSA-82fw-gwwq-j7x9": "moderate: Vitest: Path Traversal / Arbitrary File Read via @vitest/mocker Redirect Mock",
+    "pip:pyarrow==18.1.0:PYSEC-2026-113": "fixed in 23.0.1"
+  }
+}

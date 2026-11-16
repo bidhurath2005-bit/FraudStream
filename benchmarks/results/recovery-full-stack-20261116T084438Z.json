@@ -1,0 +1,28 @@
+{
+  "project": "fraudstream-ci",
+  "stop_seconds": 4.0,
+  "seconds_up_to_all_healthy": 17.7,
+  "seconds_up_to_login": 18.1,
+  "seconds_up_to_spark_reported": 21.5,
+  "seconds_up_to_new_event_persisted": 33.6,
+  "seconds_up_to_live_feed": 33.6,
+  "rows_before": [
+    6263,
+    1291,
+    1,
+    1322,
+    8
+  ],
+  "rows_after": [
+    6263,
+    1291,
+    1,
+    1323,
+    8
+  ],
+  "spark_commit_before_after": [
+    32,
+    33
+  ],
+  "artifacts_identical": true
+}

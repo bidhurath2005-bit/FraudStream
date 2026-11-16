@@ -1,0 +1,23 @@
+{
+  "name": "synthetic-fraudstream",
+  "version": "1.0",
+  "source": "synthetic",
+  "provenance": "Generated locally by simulator.generator.TransactionGenerator (fully synthetic).",
+  "spec": {
+    "name": "synthetic-fraudstream",
+    "version": "1.0",
+    "customer_count": 3000,
+    "tps": 1.5,
+    "duration_seconds": 86400.0,
+    "suspicious_pct": 1.5,
+    "avg_amount": 60.0,
+    "seed": 2026,
+    "start_time": "2026-01-05T00:00:00+00:00"
+  },
+  "rows": 139517,
+  "positives": 7064,
+  "positive_rate": 0.05063182264526903,
+  "content_sha256": "b57801b3b941b43fa897e9115ad3587803c1974321f1357540f190652d5ba3e9",
+  "path": "synthetic-fraudstream-v1.0.jsonl.gz",
+  "created_at": "2026-11-14T12:29:00.061965+00:00"
+}

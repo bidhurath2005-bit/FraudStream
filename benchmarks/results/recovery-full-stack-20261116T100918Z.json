@@ -1,0 +1,28 @@
+{
+  "project": "fraudstream-p15",
+  "stop_seconds": 4.0,
+  "seconds_up_to_all_healthy": 17.8,
+  "seconds_up_to_login": 18.3,
+  "seconds_up_to_spark_reported": 21.3,
+  "seconds_up_to_new_event_persisted": 33.4,
+  "seconds_up_to_live_feed": 33.4,
+  "rows_before": [
+    6264,
+    1392,
+    1,
+    1423,
+    8
+  ],
+  "rows_after": [
+    6264,
+    1392,
+    1,
+    1424,
+    8
+  ],
+  "spark_commit_before_after": [
+    28,
+    29
+  ],
+  "artifacts_identical": true
+}

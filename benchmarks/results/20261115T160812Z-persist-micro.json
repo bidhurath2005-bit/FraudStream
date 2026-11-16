@@ -1,0 +1,12 @@
+{
+  "batch": 200,
+  "batched_ms": 2.83,
+  "batched_tx_eps": 353.1,
+  "benchmark": "persist-micro",
+  "client": "container on the isolated network",
+  "events_each": 2000,
+  "measured": true,
+  "per_event_ms": 3.86,
+  "per_event_tx_eps": 259.4,
+  "speedup": 1.36
+}

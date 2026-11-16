@@ -1,0 +1,7 @@
+{
+  "project": "fraudstream-p12",
+  "backlog_events": 3000,
+  "seconds_start_to_first_persisted": 37.0,
+  "seconds_start_to_all_persisted": 77.9,
+  "drain_rate_eps_after_first": 73.4
+}

@@ -1,0 +1,11 @@
+{
+  "project": "fraudstream-ci",
+  "produced": 1750,
+  "acknowledged": 1750,
+  "delivery_failed": 0,
+  "failure_reasons": [],
+  "persisted_total": 1750,
+  "outage_seconds": 20.3,
+  "seconds_restart_to_all_acked_persisted": 46.1,
+  "seconds_restart_to_zero_lag": 47.2
+}

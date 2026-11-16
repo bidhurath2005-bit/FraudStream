@@ -1,0 +1,170 @@
+# FraudStream full-stack verification - the expensive end-to-end checks, run manually or weekly (not on every PR).
+#
+# Builds the three images and starts the complete distributed platform (Kafka, Spark Structured Streaming, PostgreSQL,
+# Redis, persistence consumer, API, nginx) as the throw-away compose project "fraudstream-ci" on the runner, then runs:
+#   1. the container integration suite (status = reality, every route through nginx, transaction -> investigation
+#      workflow, reports vs PostgreSQL, RBAC/audit; with `disruptive` also crash/outage/recovery tests),
+#   2. the Spark integration suite (Spark job container on the CI network),
+#   3. Playwright E2E on the distributed profile (desktop 1440 px + every page at 390 px),
+#   4. the containerised LOCAL profile (SQLite, in-process pipeline) + Playwright E2E on it,
+#   5. a Trivy scan of the built app and frontend images (report only, see SECURITY.md).
+#
+# Test-only configuration: credentials are random values generated on the runner (scripts/ci/ci_env.py, masked);
+# LOGIN_RATE_LIMIT_PER_MINUTE=100 exists ONLY in that generated .env.ci because the Playwright suite logs in more than
+# 10 times a minute. docker-compose.yml / .env.example keep the production default of 10/min.
+# The training dataset (gitignored) is regenerated deterministically and verified against the experiment's
+# content hash; model artifacts come from the repository and are mounted read-only.
+
+name: Full stack (containers, Spark, E2E)
+
+on:
+  workflow_dispatch:
+    inputs:
+      disruptive:
+        description: "Also run the disruptive container tests (crash/outage/recovery, ~10 extra minutes)"
+        type: boolean
+        default: true
+  schedule:
+    - cron: "17 3 * * 1"   # Mondays 03:17 UTC
+
+permissions:
+  contents: read
+
+concurrency:
+  group: full-stack-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PYTHON_VERSION: "3.12"
+  NODE_VERSION: "22"
+  PROJECT: fraudstream-ci
+  COMPOSE: docker compose -p fraudstream-ci --env-file .env.ci -f docker-compose.yml -f infrastructure/isolated/docker-compose.isolated.yml
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+jobs:
+  full-stack:
+    name: Distributed + local profile, containers, Spark, E2E
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    steps:
+      - name: Free runner disk space (images need ~7 GB; removes preinstalled SDKs this job does not use)
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: backend/requirements*.txt
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install Python and frontend dependencies, Playwright Chromium
+        run: |
+          python -m pip install -r backend/requirements-dev.txt
+          cd frontend && npm ci --no-audit --no-fund && npx playwright install --with-deps chromium
+
+      - name: Regenerate the training dataset and verify its content hash against the stored experiment
+        run: python scripts/ci/prepare_dataset.py
+
+      - name: Throw-away env file for the test stack (random secrets, test-only login rate limit)
+        run: |
+          python scripts/ci/ci_env.py create --out .env.ci --project "$PROJECT" --e2e
+          python scripts/ci/ci_env.py export --env-file .env.ci --project "$PROJECT" --github-env
+
+      - name: Build images
+        run: $COMPOSE --profile distributed --profile local build
+
+      - name: Start the distributed profile and wait until healthy
+        run: |
+          $COMPOSE --profile distributed up -d
+          python scripts/ci/wait_for_stack.py --project "$PROJECT" --env-file .env.ci --profile distributed --timeout 900
+
+      - name: Container integration suite
+        env:
+          MARKERS: ${{ (github.event_name == 'workflow_dispatch' && !inputs.disruptive) && 'containers and not disruptive' || 'containers' }}
+        run: |
+          python -m pytest -m "$MARKERS" infrastructure/tests -v -p no:cacheprovider \
+            --junitxml=test-results/containers.xml -o junit_family=xunit2
+
+      - name: Re-check health after the container suite
+        if: success() || failure()
+        run: python scripts/ci/wait_for_stack.py --project "$PROJECT" --env-file .env.ci --profile distributed --timeout 600
+
+      - name: Spark integration suite
+        if: success() || failure()
+        run: |
+          python -m pytest -m "integration and spark" streaming/tests/test_spark_integration.py -v -p no:cacheprovider \
+            --junitxml=test-results/spark-it.xml -o junit_family=xunit2
+
+      - name: Playwright E2E - distributed profile (desktop + 390 px)
+        if: success() || failure()
+        run: |
+          # The E2E specs need recent traffic; on a fresh stack only the last spec creates any (scripts/ci/seed_traffic.py).
+          python scripts/ci/seed_traffic.py --env-file .env.ci --profile distributed
+          python scripts/run_e2e.py --env-file .env.ci --profile distributed
+
+      - name: Keep the distributed screenshots
+        if: success() || failure()
+        run: mkdir -p e2e-distributed && cp -r frontend/e2e-results/. e2e-distributed/ || true
+
+      - name: Start the containerised LOCAL profile (SQLite, in-process pipeline) and wait until healthy
+        if: success() || failure()
+        run: |
+          $COMPOSE --profile local up -d api-local frontend-local
+          python scripts/ci/wait_for_stack.py --project "$PROJECT" --env-file .env.ci --profile local \
+            --services api-local,frontend-local --timeout 300
+
+      - name: Playwright E2E - local profile (desktop + 390 px)
+        if: success() || failure()
+        run: |
+          sleep 61   # the two E2E runs share one client address; let the previous minute's login window expire
+          python scripts/ci/seed_traffic.py --env-file .env.ci --profile local    # fresh SQLite database
+          python scripts/run_e2e.py --env-file .env.ci --profile local
+
+      - name: Image scan - Trivy 0.76.2 (image pinned by digest), OS packages, HIGH/CRITICAL with a fix; report only
+        # Python and npm libraries are gated by pip-audit / npm audit in ci.yml; Trivy adds the base-image OS packages.
+        if: success() || failure()
+        run: |
+          for img in fraudstream-app fraudstream-frontend; do
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+              aquasec/trivy@sha256:8f6bb947dbc528902e11f2f5be52f7b519f6a39d5d148f41166f2040499768fb \
+              image --quiet --scanners vuln --pkg-types os --severity HIGH,CRITICAL --ignore-unfixed \
+              --exit-code 0 "$img:local" > "trivy-${img#fraudstream-}.txt" 2>&1
+          done
+
+      - name: Summaries
+        if: always()
+        run: |
+          python scripts/ci/junit_summary.py "Container integration suite" test-results/containers.xml >> "$GITHUB_STEP_SUMMARY"
+          python scripts/ci/junit_summary.py "Spark integration suite" test-results/spark-it.xml >> "$GITHUB_STEP_SUMMARY"
+          for f in trivy-app.txt trivy-frontend.txt; do
+            [ -f "$f" ] && { echo "### Trivy: $f (report only)"; echo '```'; grep -E 'Total:|^[a-z].*\(' "$f" | head -20; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          done
+          $COMPOSE --profile distributed --profile local ps -a >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Collect service logs
+        if: failure()
+        run: $COMPOSE --profile distributed --profile local logs --no-color --tail 300 > stack-logs.txt 2>&1 || true
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: full-stack-results
+          path: |
+            test-results/
+            e2e-distributed/
+            frontend/e2e-results/
+            trivy-*.txt
+            stack-logs.txt
+          if-no-files-found: ignore
+          retention-days: 14

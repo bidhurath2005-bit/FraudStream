@@ -1,0 +1,1262 @@
+{
+  "args": {
+    "burst": 0,
+    "concurrency": 4,
+    "customers_per_eps": 200,
+    "drain_timeout": 600,
+    "duration": 600.0,
+    "in_container": false,
+    "out": "",
+    "pause": 1.0,
+    "project": "fraudstream-p12",
+    "rates": "100",
+    "seed": 5151,
+    "source": "kafka",
+    "timeout": 7200
+  },
+  "benchmark": "stream",
+  "container_limits": {
+    "api": {
+      "mem_limit_mib": 1536,
+      "nano_cpus": null
+    },
+    "frontend": {
+      "mem_limit_mib": 128,
+      "nano_cpus": null
+    },
+    "kafka": {
+      "mem_limit_mib": 1024,
+      "nano_cpus": null
+    },
+    "persistence-consumer": {
+      "mem_limit_mib": 512,
+      "nano_cpus": null
+    },
+    "postgres": {
+      "mem_limit_mib": 512,
+      "nano_cpus": null
+    },
+    "redis": {
+      "mem_limit_mib": 256,
+      "nano_cpus": null
+    },
+    "spark": {
+      "mem_limit_mib": 3072,
+      "nano_cpus": null
+    }
+  },
+  "levels": [
+    {
+      "accepted": 67572,
+      "accepted_eps": 112.6,
+      "alert_rate": 0.1897,
+      "alerts": 12821,
+      "burst_events": null,
+      "customers": 20000,
+      "dead_letters": 0,
+      "drain_seconds_after_send": 45.2,
+      "duplicate_rows": 0,
+      "duration_target_s": 600.0,
+      "error_rate": 0.0,
+      "errors": {},
+      "events_generated": 67572,
+      "lag": {
+        "consumer_lag_max": 4970,
+        "samples": [
+          {
+            "consumer_lag": 0,
+            "spark_lag": 1,
+            "t": 1794758960.999243
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 282,
+            "t": 1794758964.0398736
+          },
+          {
+            "consumer_lag": 28,
+            "spark_lag": 567,
+            "t": 1794758967.069529
+          },
+          {
+            "consumer_lag": 226,
+            "spark_lag": 479,
+            "t": 1794758970.1055825
+          },
+          {
+            "consumer_lag": 170,
+            "spark_lag": 320,
+            "t": 1794758973.1701758
+          },
+          {
+            "consumer_lag": 25,
+            "spark_lag": 612,
+            "t": 1794758976.2209935
+          },
+          {
+            "consumer_lag": 29,
+            "spark_lag": 349,
+            "t": 1794758979.2712872
+          },
+          {
+            "consumer_lag": 188,
+            "spark_lag": 687,
+            "t": 1794758982.2992606
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 570,
+            "t": 1794758985.3569126
+          },
+          {
+            "consumer_lag": 133,
+            "spark_lag": 435,
+            "t": 1794758988.3852205
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 757,
+            "t": 1794758991.426705
+          },
+          {
+            "consumer_lag": 228,
+            "spark_lag": 462,
+            "t": 1794758994.4600146
+          },
+          {
+            "consumer_lag": 43,
+            "spark_lag": 791,
+            "t": 1794758997.5046144
+          },
+          {
+            "consumer_lag": 228,
+            "spark_lag": 690,
+            "t": 1794759000.541623
+          },
+          {
+            "consumer_lag": 167,
+            "spark_lag": 679,
+            "t": 1794759004.5973368
+          },
+          {
+            "consumer_lag": 143,
+            "spark_lag": 982,
+            "t": 1794759007.621475
+          },
+          {
+            "consumer_lag": 247,
+            "spark_lag": 725,
+            "t": 1794759010.6693356
+          },
+          {
+            "consumer_lag": 234,
+            "spark_lag": 586,
+            "t": 1794759013.705037
+          },
+          {
+            "consumer_lag": 221,
+            "spark_lag": 903,
+            "t": 1794759016.7452338
+          },
+          {
+            "consumer_lag": 107,
+            "spark_lag": 670,
+            "t": 1794759019.7715526
+          },
+          {
+            "consumer_lag": 205,
+            "spark_lag": 619,
+            "t": 1794759022.8015199
+          },
+          {
+            "consumer_lag": 301,
+            "spark_lag": 931,
+            "t": 1794759025.8370845
+          },
+          {
+            "consumer_lag": 388,
+            "spark_lag": 846,
+            "t": 1794759028.8790183
+          },
+          {
+            "consumer_lag": 351,
+            "spark_lag": 890,
+            "t": 1794759032.9172006
+          },
+          {
+            "consumer_lag": 224,
+            "spark_lag": 1214,
+            "t": 1794759035.9392781
+          },
+          {
+            "consumer_lag": 448,
+            "spark_lag": 1108,
+            "t": 1794759038.972672
+          },
+          {
+            "consumer_lag": 85,
+            "spark_lag": 1449,
+            "t": 1794759041.996001
+          },
+          {
+            "consumer_lag": 507,
+            "spark_lag": 1233,
+            "t": 1794759045.0248153
+          },
+          {
+            "consumer_lag": 307,
+            "spark_lag": 962,
+            "t": 1794759048.0706623
+          },
+          {
+            "consumer_lag": 613,
+            "spark_lag": 1280,
+            "t": 1794759051.11258
+          },
+          {
+            "consumer_lag": 234,
+            "spark_lag": 986,
+            "t": 1794759054.1498098
+          },
+          {
+            "consumer_lag": 635,
+            "spark_lag": 1315,
+            "t": 1794759057.174791
+          },
+          {
+            "consumer_lag": 235,
+            "spark_lag": 1072,
+            "t": 1794759060.2095413
+          },
+          {
+            "consumer_lag": 684,
+            "spark_lag": 1400,
+            "t": 1794759063.2428927
+          },
+          {
+            "consumer_lag": 298,
+            "spark_lag": 1769,
+            "t": 1794759066.2649918
+          },
+          {
+            "consumer_lag": 545,
+            "spark_lag": 1444,
+            "t": 1794759069.2947927
+          },
+          {
+            "consumer_lag": 443,
+            "spark_lag": 1176,
+            "t": 1794759073.3633342
+          },
+          {
+            "consumer_lag": 324,
+            "spark_lag": 1517,
+            "t": 1794759076.3923743
+          },
+          {
+            "consumer_lag": 586,
+            "spark_lag": 1885,
+            "t": 1794759079.4164736
+          },
+          {
+            "consumer_lag": 386,
+            "spark_lag": 2230,
+            "t": 1794759082.4607027
+          },
+          {
+            "consumer_lag": 458,
+            "spark_lag": 1709,
+            "t": 1794759085.4868734
+          },
+          {
+            "consumer_lag": 796,
+            "spark_lag": 1082,
+            "t": 1794759088.5306654
+          },
+          {
+            "consumer_lag": 396,
+            "spark_lag": 1399,
+            "t": 1794759091.5585294
+          },
+          {
+            "consumer_lag": 530,
+            "spark_lag": 1728,
+            "t": 1794759094.5869596
+          },
+          {
+            "consumer_lag": 796,
+            "spark_lag": 2063,
+            "t": 1794759097.6237273
+          },
+          {
+            "consumer_lag": 396,
+            "spark_lag": 1371,
+            "t": 1794759100.676599
+          },
+          {
+            "consumer_lag": 651,
+            "spark_lag": 1714,
+            "t": 1794759103.7082357
+          },
+          {
+            "consumer_lag": 749,
+            "spark_lag": 2067,
+            "t": 1794759106.7390447
+          },
+          {
+            "consumer_lag": 549,
+            "spark_lag": 1436,
+            "t": 1794759109.7827733
+          },
+          {
+            "consumer_lag": 516,
+            "spark_lag": 1779,
+            "t": 1794759112.8198211
+          },
+          {
+            "consumer_lag": 938,
+            "spark_lag": 2112,
+            "t": 1794759115.8770394
+          },
+          {
+            "consumer_lag": 646,
+            "spark_lag": 1406,
+            "t": 1794759118.8986983
+          },
+          {
+            "consumer_lag": 625,
+            "spark_lag": 1717,
+            "t": 1794759121.9248447
+          },
+          {
+            "consumer_lag": 807,
+            "spark_lag": 2034,
+            "t": 1794759124.947421
+          },
+          {
+            "consumer_lag": 751,
+            "spark_lag": 2351,
+            "t": 1794759127.9665275
+          },
+          {
+            "consumer_lag": 551,
+            "spark_lag": 1606,
+            "t": 1794759131.0006707
+          },
+          {
+            "consumer_lag": 634,
+            "spark_lag": 1936,
+            "t": 1794759134.0262737
+          },
+          {
+            "consumer_lag": 855,
+            "spark_lag": 1172,
+            "t": 1794759137.04783
+          },
+          {
+            "consumer_lag": 455,
+            "spark_lag": 1612,
+            "t": 1794759141.0787463
+          },
+          {
+            "consumer_lag": 853,
+            "spark_lag": 2094,
+            "t": 1794759145.106919
+          },
+          {
+            "consumer_lag": 1005,
+            "spark_lag": 1304,
+            "t": 1794759148.134654
+          },
+          {
+            "consumer_lag": 605,
+            "spark_lag": 1662,
+            "t": 1794759151.1907063
+          },
+          {
+            "consumer_lag": 755,
+            "spark_lag": 1998,
+            "t": 1794759154.2177718
+          },
+          {
+            "consumer_lag": 1157,
+            "spark_lag": 2354,
+            "t": 1794759157.238052
+          },
+          {
+            "consumer_lag": 757,
+            "spark_lag": 1532,
+            "t": 1794759160.271771
+          },
+          {
+            "consumer_lag": 780,
+            "spark_lag": 1875,
+            "t": 1794759163.2977808
+          },
+          {
+            "consumer_lag": 1305,
+            "spark_lag": 2204,
+            "t": 1794759166.3177123
+          },
+          {
+            "consumer_lag": 919,
+            "spark_lag": 1386,
+            "t": 1794759169.3484375
+          },
+          {
+            "consumer_lag": 997,
+            "spark_lag": 1720,
+            "t": 1794759172.3710477
+          },
+          {
+            "consumer_lag": 1283,
+            "spark_lag": 2069,
+            "t": 1794759175.3955674
+          },
+          {
+            "consumer_lag": 990,
+            "spark_lag": 1348,
+            "t": 1794759178.4220862
+          },
+          {
+            "consumer_lag": 1007,
+            "spark_lag": 1660,
+            "t": 1794759181.4514372
+          },
+          {
+            "consumer_lag": 1277,
+            "spark_lag": 1989,
+            "t": 1794759184.5281255
+          },
+          {
+            "consumer_lag": 1263,
+            "spark_lag": 2315,
+            "t": 1794759187.552506
+          },
+          {
+            "consumer_lag": 1223,
+            "spark_lag": 1604,
+            "t": 1794759190.5801384
+          },
+          {
+            "consumer_lag": 1483,
+            "spark_lag": 1919,
+            "t": 1794759193.6317403
+          },
+          {
+            "consumer_lag": 1503,
+            "spark_lag": 2231,
+            "t": 1794759196.6539013
+          },
+          {
+            "consumer_lag": 1568,
+            "spark_lag": 1669,
+            "t": 1794759200.6868021
+          },
+          {
+            "consumer_lag": 1710,
+            "spark_lag": 2034,
+            "t": 1794759203.7741745
+          },
+          {
+            "consumer_lag": 1510,
+            "spark_lag": 2397,
+            "t": 1794759206.7986116
+          },
+          {
+            "consumer_lag": 1812,
+            "spark_lag": 1768,
+            "t": 1794759209.821852
+          },
+          {
+            "consumer_lag": 1729,
+            "spark_lag": 2113,
+            "t": 1794759212.860604
+          },
+          {
+            "consumer_lag": 1685,
+            "spark_lag": 1464,
+            "t": 1794759215.8838446
+          },
+          {
+            "consumer_lag": 1934,
+            "spark_lag": 1815,
+            "t": 1794759218.907491
+          },
+          {
+            "consumer_lag": 1871,
+            "spark_lag": 2153,
+            "t": 1794759221.9315522
+          },
+          {
+            "consumer_lag": 1709,
+            "spark_lag": 1539,
+            "t": 1794759224.9533203
+          },
+          {
+            "consumer_lag": 2027,
+            "spark_lag": 1923,
+            "t": 1794759227.9746068
+          },
+          {
+            "consumer_lag": 1853,
+            "spark_lag": 1268,
+            "t": 1794759231.0072145
+          },
+          {
+            "consumer_lag": 1802,
+            "spark_lag": 1604,
+            "t": 1794759234.0354536
+          },
+          {
+            "consumer_lag": 2208,
+            "spark_lag": 1954,
+            "t": 1794759237.0584118
+          },
+          {
+            "consumer_lag": 1811,
+            "spark_lag": 1331,
+            "t": 1794759240.0826805
+          },
+          {
+            "consumer_lag": 1810,
+            "spark_lag": 1679,
+            "t": 1794759243.1214614
+          },
+          {
+            "consumer_lag": 2129,
+            "spark_lag": 2043,
+            "t": 1794759246.1415608
+          },
+          {
+            "consumer_lag": 1824,
+            "spark_lag": 1345,
+            "t": 1794759249.1613796
+          },
+          {
+            "consumer_lag": 1793,
+            "spark_lag": 1684,
+            "t": 1794759252.1842093
+          },
+          {
+            "consumer_lag": 1937,
+            "spark_lag": 2028,
+            "t": 1794759255.208934
+          },
+          {
+            "consumer_lag": 1926,
+            "spark_lag": 2387,
+            "t": 1794759258.2289302
+          },
+          {
+            "consumer_lag": 1726,
+            "spark_lag": 1661,
+            "t": 1794759261.252864
+          },
+          {
+            "consumer_lag": 1826,
+            "spark_lag": 2020,
+            "t": 1794759264.27654
+          },
+          {
+            "consumer_lag": 2049,
+            "spark_lag": 2370,
+            "t": 1794759267.297885
+          },
+          {
+            "consumer_lag": 1877,
+            "spark_lag": 1562,
+            "t": 1794759270.3189375
+          },
+          {
+            "consumer_lag": 1708,
+            "spark_lag": 1932,
+            "t": 1794759273.3438425
+          },
+          {
+            "consumer_lag": 1996,
+            "spark_lag": 2266,
+            "t": 1794759276.3656447
+          },
+          {
+            "consumer_lag": 2122,
+            "spark_lag": 1376,
+            "t": 1794759279.399062
+          },
+          {
+            "consumer_lag": 1922,
+            "spark_lag": 1719,
+            "t": 1794759282.423815
+          },
+          {
+            "consumer_lag": 2146,
+            "spark_lag": 2044,
+            "t": 1794759285.4548805
+          },
+          {
+            "consumer_lag": 2338,
+            "spark_lag": 2356,
+            "t": 1794759288.4785929
+          },
+          {
+            "consumer_lag": 2138,
+            "spark_lag": 2713,
+            "t": 1794759291.5128727
+          },
+          {
+            "consumer_lag": 2343,
+            "spark_lag": 1848,
+            "t": 1794759294.5425384
+          },
+          {
+            "consumer_lag": 2579,
+            "spark_lag": 2161,
+            "t": 1794759297.580516
+          },
+          {
+            "consumer_lag": 2279,
+            "spark_lag": 1357,
+            "t": 1794759300.6017506
+          },
+          {
+            "consumer_lag": 2270,
+            "spark_lag": 1732,
+            "t": 1794759303.6352723
+          },
+          {
+            "consumer_lag": 2391,
+            "spark_lag": 2062,
+            "t": 1794759306.652483
+          },
+          {
+            "consumer_lag": 2543,
+            "spark_lag": 2404,
+            "t": 1794759309.677452
+          },
+          {
+            "consumer_lag": 2143,
+            "spark_lag": 2760,
+            "t": 1794759312.7307975
+          },
+          {
+            "consumer_lag": 2362,
+            "spark_lag": 2032,
+            "t": 1794759315.758904
+          },
+          {
+            "consumer_lag": 2585,
+            "spark_lag": 2415,
+            "t": 1794759318.7793322
+          },
+          {
+            "consumer_lag": 2548,
+            "spark_lag": 2778,
+            "t": 1794759321.7987554
+          },
+          {
+            "consumer_lag": 2194,
+            "spark_lag": 1895,
+            "t": 1794759324.824003
+          },
+          {
+            "consumer_lag": 2419,
+            "spark_lag": 2227,
+            "t": 1794759327.8471608
+          },
+          {
+            "consumer_lag": 2878,
+            "spark_lag": 2549,
+            "t": 1794759330.8853593
+          },
+          {
+            "consumer_lag": 2478,
+            "spark_lag": 1544,
+            "t": 1794759333.9336379
+          },
+          {
+            "consumer_lag": 2640,
+            "spark_lag": 1995,
+            "t": 1794759337.9610991
+          },
+          {
+            "consumer_lag": 2840,
+            "spark_lag": 2350,
+            "t": 1794759340.9861298
+          },
+          {
+            "consumer_lag": 2640,
+            "spark_lag": 1561,
+            "t": 1794759344.017305
+          },
+          {
+            "consumer_lag": 2700,
+            "spark_lag": 1918,
+            "t": 1794759347.0427942
+          },
+          {
+            "consumer_lag": 3142,
+            "spark_lag": 2275,
+            "t": 1794759350.0631695
+          },
+          {
+            "consumer_lag": 2749,
+            "spark_lag": 2602,
+            "t": 1794759353.0869985
+          },
+          {
+            "consumer_lag": 2572,
+            "spark_lag": 1828,
+            "t": 1794759356.1178012
+          },
+          {
+            "consumer_lag": 2960,
+            "spark_lag": 2187,
+            "t": 1794759359.1428895
+          },
+          {
+            "consumer_lag": 2919,
+            "spark_lag": 2560,
+            "t": 1794759362.169285
+          },
+          {
+            "consumer_lag": 2519,
+            "spark_lag": 1725,
+            "t": 1794759365.188465
+          },
+          {
+            "consumer_lag": 2903,
+            "spark_lag": 2087,
+            "t": 1794759368.2170577
+          },
+          {
+            "consumer_lag": 3116,
+            "spark_lag": 2432,
+            "t": 1794759371.2401683
+          },
+          {
+            "consumer_lag": 2716,
+            "spark_lag": 1686,
+            "t": 1794759375.2899313
+          },
+          {
+            "consumer_lag": 2845,
+            "spark_lag": 2024,
+            "t": 1794759378.3259747
+          },
+          {
+            "consumer_lag": 3156,
+            "spark_lag": 2369,
+            "t": 1794759381.3484037
+          },
+          {
+            "consumer_lag": 2931,
+            "spark_lag": 1507,
+            "t": 1794759384.369827
+          },
+          {
+            "consumer_lag": 2805,
+            "spark_lag": 1859,
+            "t": 1794759387.397467
+          },
+          {
+            "consumer_lag": 3100,
+            "spark_lag": 2334,
+            "t": 1794759391.4228196
+          },
+          {
+            "consumer_lag": 3202,
+            "spark_lag": 1393,
+            "t": 1794759394.4465075
+          },
+          {
+            "consumer_lag": 2802,
+            "spark_lag": 1747,
+            "t": 1794759397.4684253
+          },
+          {
+            "consumer_lag": 3168,
+            "spark_lag": 2107,
+            "t": 1794759400.4937706
+          },
+          {
+            "consumer_lag": 3320,
+            "spark_lag": 2451,
+            "t": 1794759403.5149302
+          },
+          {
+            "consumer_lag": 3061,
+            "spark_lag": 2795,
+            "t": 1794759406.566834
+          },
+          {
+            "consumer_lag": 3033,
+            "spark_lag": 1883,
+            "t": 1794759409.592892
+          },
+          {
+            "consumer_lag": 3231,
+            "spark_lag": 2236,
+            "t": 1794759412.6185958
+          },
+          {
+            "consumer_lag": 3339,
+            "spark_lag": 2718,
+            "t": 1794759416.6503017
+          },
+          {
+            "consumer_lag": 3009,
+            "spark_lag": 1916,
+            "t": 1794759420.6788263
+          },
+          {
+            "consumer_lag": 3284,
+            "spark_lag": 2225,
+            "t": 1794759423.7010736
+          },
+          {
+            "consumer_lag": 3615,
+            "spark_lag": 2568,
+            "t": 1794759426.7224317
+          },
+          {
+            "consumer_lag": 3215,
+            "spark_lag": 1677,
+            "t": 1794759429.762372
+          },
+          {
+            "consumer_lag": 3415,
+            "spark_lag": 2156,
+            "t": 1794759433.787703
+          },
+          {
+            "consumer_lag": 3592,
+            "spark_lag": 2491,
+            "t": 1794759436.8071542
+          },
+          {
+            "consumer_lag": 3454,
+            "spark_lag": 1583,
+            "t": 1794759439.8274603
+          },
+          {
+            "consumer_lag": 3224,
+            "spark_lag": 1905,
+            "t": 1794759442.8536978
+          },
+          {
+            "consumer_lag": 3575,
+            "spark_lag": 2258,
+            "t": 1794759445.8743527
+          },
+          {
+            "consumer_lag": 3739,
+            "spark_lag": 1338,
+            "t": 1794759448.8955305
+          },
+          {
+            "consumer_lag": 3539,
+            "spark_lag": 1702,
+            "t": 1794759451.9440632
+          },
+          {
+            "consumer_lag": 3480,
+            "spark_lag": 2044,
+            "t": 1794759454.9702208
+          },
+          {
+            "consumer_lag": 3643,
+            "spark_lag": 2408,
+            "t": 1794759457.9917552
+          },
+          {
+            "consumer_lag": 4022,
+            "spark_lag": 2750,
+            "t": 1794759461.0332637
+          },
+          {
+            "consumer_lag": 3622,
+            "spark_lag": 1838,
+            "t": 1794759464.0595083
+          },
+          {
+            "consumer_lag": 3620,
+            "spark_lag": 2147,
+            "t": 1794759467.0817654
+          },
+          {
+            "consumer_lag": 3823,
+            "spark_lag": 2468,
+            "t": 1794759470.1035907
+          },
+          {
+            "consumer_lag": 4207,
+            "spark_lag": 2833,
+            "t": 1794759473.126838
+          },
+          {
+            "consumer_lag": 3807,
+            "spark_lag": 1784,
+            "t": 1794759476.1752858
+          },
+          {
+            "consumer_lag": 3825,
+            "spark_lag": 2152,
+            "t": 1794759479.1997893
+          },
+          {
+            "consumer_lag": 3940,
+            "spark_lag": 2491,
+            "t": 1794759482.221089
+          },
+          {
+            "consumer_lag": 4210,
+            "spark_lag": 2842,
+            "t": 1794759485.240659
+          },
+          {
+            "consumer_lag": 4010,
+            "spark_lag": 3189,
+            "t": 1794759488.2747145
+          },
+          {
+            "consumer_lag": 3779,
+            "spark_lag": 2142,
+            "t": 1794759491.3123834
+          },
+          {
+            "consumer_lag": 4156,
+            "spark_lag": 2474,
+            "t": 1794759494.335158
+          },
+          {
+            "consumer_lag": 4421,
+            "spark_lag": 2821,
+            "t": 1794759497.3570473
+          },
+          {
+            "consumer_lag": 4221,
+            "spark_lag": 1745,
+            "t": 1794759500.3924086
+          },
+          {
+            "consumer_lag": 4023,
+            "spark_lag": 2105,
+            "t": 1794759503.4157157
+          },
+          {
+            "consumer_lag": 4311,
+            "spark_lag": 2446,
+            "t": 1794759506.4367628
+          },
+          {
+            "consumer_lag": 4482,
+            "spark_lag": 2799,
+            "t": 1794759509.4589944
+          },
+          {
+            "consumer_lag": 4178,
+            "spark_lag": 3122,
+            "t": 1794759512.4822478
+          },
+          {
+            "consumer_lag": 3978,
+            "spark_lag": 2103,
+            "t": 1794759515.5154302
+          },
+          {
+            "consumer_lag": 4022,
+            "spark_lag": 2440,
+            "t": 1794759518.5537024
+          },
+          {
+            "consumer_lag": 4589,
+            "spark_lag": 2798,
+            "t": 1794759521.5742822
+          },
+          {
+            "consumer_lag": 4516,
+            "spark_lag": 1602,
+            "t": 1794759524.5948691
+          },
+          {
+            "consumer_lag": 4116,
+            "spark_lag": 1955,
+            "t": 1794759527.6180675
+          },
+          {
+            "consumer_lag": 4064,
+            "spark_lag": 2291,
+            "t": 1794759530.659447
+          },
+          {
+            "consumer_lag": 4399,
+            "spark_lag": 2659,
+            "t": 1794759533.6827056
+          },
+          {
+            "consumer_lag": 4803,
+            "spark_lag": 3020,
+            "t": 1794759536.7090821
+          },
+          {
+            "consumer_lag": 4607,
+            "spark_lag": 1831,
+            "t": 1794759539.7413354
+          },
+          {
+            "consumer_lag": 4241,
+            "spark_lag": 2202,
+            "t": 1794759542.7735052
+          },
+          {
+            "consumer_lag": 4301,
+            "spark_lag": 2573,
+            "t": 1794759545.7963252
+          },
+          {
+            "consumer_lag": 4653,
+            "spark_lag": 2924,
+            "t": 1794759548.8186529
+          },
+          {
+            "consumer_lag": 4742,
+            "spark_lag": 3294,
+            "t": 1794759551.8410583
+          },
+          {
+            "consumer_lag": 4342,
+            "spark_lag": 2198,
+            "t": 1794759555.869492
+          },
+          {
+            "consumer_lag": 4457,
+            "spark_lag": 2544,
+            "t": 1794759558.926707
+          },
+          {
+            "consumer_lag": 4723,
+            "spark_lag": 2828,
+            "t": 1794759561.9505372
+          },
+          {
+            "consumer_lag": 4959,
+            "spark_lag": 1211,
+            "t": 1794759564.9730465
+          },
+          {
+            "consumer_lag": 4559,
+            "spark_lag": 1211,
+            "t": 1794759568.0036147
+          },
+          {
+            "consumer_lag": 4574,
+            "spark_lag": 1211,
+            "t": 1794759571.051149
+          },
+          {
+            "consumer_lag": 4970,
+            "spark_lag": 0,
+            "t": 1794759574.0860918
+          },
+          {
+            "consumer_lag": 4370,
+            "spark_lag": 0,
+            "t": 1794759577.1039479
+          },
+          {
+            "consumer_lag": 3970,
+            "spark_lag": 0,
+            "t": 1794759580.1268532
+          },
+          {
+            "consumer_lag": 3570,
+            "spark_lag": 0,
+            "t": 1794759583.1514232
+          },
+          {
+            "consumer_lag": 2970,
+            "spark_lag": 0,
+            "t": 1794759586.172015
+          },
+          {
+            "consumer_lag": 2370,
+            "spark_lag": 0,
+            "t": 1794759590.1975825
+          },
+          {
+            "consumer_lag": 1970,
+            "spark_lag": 0,
+            "t": 1794759593.220331
+          },
+          {
+            "consumer_lag": 1570,
+            "spark_lag": 0,
+            "t": 1794759596.244639
+          },
+          {
+            "consumer_lag": 970,
+            "spark_lag": 0,
+            "t": 1794759599.2637732
+          },
+          {
+            "consumer_lag": 570,
+            "spark_lag": 0,
+            "t": 1794759602.2843971
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 0,
+            "t": 1794759605.3090992
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 0,
+            "t": 1794759608.3344483
+          }
+        ],
+        "spark_lag_max": 3294
+      },
+      "latency_ms": {
+        "end_to_end_ms": {
+          "max": 69495.0,
+          "mean": 31215.0,
+          "min": 1285.0,
+          "n": 67572,
+          "p50": 31474.0,
+          "p95": 56993.0,
+          "p99": 62409.0
+        },
+        "http_accept_ms": {
+          "n": 0
+        },
+        "persist_ms": {
+          "max": 50655.0,
+          "mean": 22024.0,
+          "min": 68.0,
+          "n": 67572,
+          "p50": 22273.0,
+          "p95": 44329.0,
+          "p99": 48282.0
+        },
+        "producer_ack_ms": {
+          "max": 620.2,
+          "mean": 150.1,
+          "min": 4.7,
+          "n": 67572,
+          "p50": 146.8,
+          "p95": 260.4,
+          "p99": 336.0
+        },
+        "stream_ms": {
+          "max": 20124.0,
+          "mean": 9191.0,
+          "min": 1071.0,
+          "n": 67572,
+          "p50": 9023.0,
+          "p95": 15520.0,
+          "p99": 18084.0
+        }
+      },
+      "missing": 0,
+      "persisted": 67572,
+      "persisted_eps_overall": 104.9,
+      "persisted_eps_steady": 105.5,
+      "resources": {
+        "api": {
+          "cpu_pct_max": 33.1,
+          "cpu_pct_mean": 3.0,
+          "mem_mib_max": 206.7,
+          "mem_mib_mean": 193.4,
+          "samples": 319
+        },
+        "frontend": {
+          "cpu_pct_max": 3.8,
+          "cpu_pct_mean": 0.2,
+          "mem_mib_max": 19.7,
+          "mem_mib_mean": 14.3,
+          "samples": 319
+        },
+        "kafka": {
+          "cpu_pct_max": 202.43,
+          "cpu_pct_mean": 24.4,
+          "mem_mib_max": 808.1,
+          "mem_mib_mean": 678.5,
+          "samples": 319
+        },
+        "persistence-consumer": {
+          "cpu_pct_max": 79.42,
+          "cpu_pct_mean": 38.7,
+          "mem_mib_max": 171.0,
+          "mem_mib_mean": 155.6,
+          "samples": 319
+        },
+        "postgres": {
+          "cpu_pct_max": 82.69,
+          "cpu_pct_mean": 15.6,
+          "mem_mib_max": 391.8,
+          "mem_mib_mean": 322.1,
+          "samples": 319
+        },
+        "redis": {
+          "cpu_pct_max": 5.91,
+          "cpu_pct_mean": 1.6,
+          "mem_mib_max": 17.9,
+          "mem_mib_mean": 13.1,
+          "samples": 319
+        },
+        "spark": {
+          "cpu_pct_max": 647.71,
+          "cpu_pct_mean": 170.3,
+          "mem_mib_max": 3039.2,
+          "mem_mib_mean": 2984.6,
+          "samples": 319
+        }
+      },
+      "scored_duplicates_on_kafka": 0,
+      "send_seconds": 600.16,
+      "source": "kafka",
+      "submit_call_seconds": 600.0,
+      "submitted_eps": 112.6,
+      "target_rate_eps": 100.0,
+      "window": {
+        "t_begin": 1794758960.9994617,
+        "t_done": 1794759606.4047,
+        "t_sent": 1794759561.1603768
+      }
+    }
+  ],
+  "machine": {
+    "docker": {
+      "kernel": "6.18.58.1-microsoft-standard-WSL2",
+      "os": "Docker Desktop",
+      "server": "29.9.2",
+      "vm_cpus": 16,
+      "vm_mem_gib": 7.61
+    },
+    "host_ram_gb": 15.7,
+    "logical_cpus": 16,
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10"
+  },
+  "measured": true,
+  "project": "fraudstream-p12",
+  "started_at": "2026-11-15T16:09:16.264810+00:00",
+  "volume_bytes_after": {
+    "kafka-data": 2938679999,
+    "postgres-data": 881991397,
+    "redis-data": 3721643,
+    "spark-checkpoints": 632931925
+  },
+  "volume_bytes_before": {
+    "kafka-data": 2479092065,
+    "postgres-data": 668810981,
+    "redis-data": 2809691,
+    "spark-checkpoints": 344836305
+  },
+  "volume_growth_bytes": {
+    "kafka-data": 459587934,
+    "postgres-data": 213180416,
+    "redis-data": 911952,
+    "spark-checkpoints": 288095620
+  }
+}

@@ -1,0 +1,277 @@
+{
+  "args": {
+    "burst": 5000,
+    "concurrency": 4,
+    "drain_timeout": 600,
+    "duration": 60,
+    "in_container": false,
+    "out": "",
+    "pause": 1.0,
+    "project": "fraudstream-p12",
+    "rates": "10,25,50,100",
+    "seed": 1212,
+    "source": "kafka",
+    "timeout": 7200
+  },
+  "benchmark": "stream",
+  "container_limits": {
+    "api": {
+      "mem_limit_mib": 1536,
+      "nano_cpus": null
+    },
+    "frontend": {
+      "mem_limit_mib": 128,
+      "nano_cpus": null
+    },
+    "kafka": {
+      "mem_limit_mib": 1024,
+      "nano_cpus": null
+    },
+    "persistence-consumer": {
+      "mem_limit_mib": 512,
+      "nano_cpus": null
+    },
+    "postgres": {
+      "mem_limit_mib": 512,
+      "nano_cpus": null
+    },
+    "redis": {
+      "mem_limit_mib": 256,
+      "nano_cpus": null
+    },
+    "spark": {
+      "mem_limit_mib": 3072,
+      "nano_cpus": null
+    }
+  },
+  "levels": [
+    {
+      "accepted": 5000,
+      "accepted_eps": 39072.1,
+      "burst_events": 5000,
+      "dead_letters": 0,
+      "drain_seconds_after_send": 38.6,
+      "duplicate_rows": 0,
+      "duration_target_s": null,
+      "error_rate": 0.0,
+      "errors": {},
+      "events_generated": 5000,
+      "lag": {
+        "consumer_lag_max": 3895,
+        "samples": [
+          {
+            "consumer_lag": 0,
+            "spark_lag": 177,
+            "t": 1794757348.0483127
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 5000,
+            "t": 1794757351.0949364
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 5000,
+            "t": 1794757354.1932907
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 5000,
+            "t": 1794757357.2311954
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 5000,
+            "t": 1794757360.269216
+          },
+          {
+            "consumer_lag": 782,
+            "spark_lag": 5000,
+            "t": 1794757363.3093102
+          },
+          {
+            "consumer_lag": 3582,
+            "spark_lag": 5000,
+            "t": 1794757366.3371313
+          },
+          {
+            "consumer_lag": 3895,
+            "spark_lag": 0,
+            "t": 1794757369.3961148
+          },
+          {
+            "consumer_lag": 3295,
+            "spark_lag": 0,
+            "t": 1794757372.4326887
+          },
+          {
+            "consumer_lag": 2495,
+            "spark_lag": 0,
+            "t": 1794757375.4953096
+          },
+          {
+            "consumer_lag": 1895,
+            "spark_lag": 0,
+            "t": 1794757378.5212955
+          },
+          {
+            "consumer_lag": 1095,
+            "spark_lag": 0,
+            "t": 1794757381.5477502
+          },
+          {
+            "consumer_lag": 295,
+            "spark_lag": 0,
+            "t": 1794757384.5727348
+          },
+          {
+            "consumer_lag": 0,
+            "spark_lag": 0,
+            "t": 1794757387.6122768
+          }
+        ],
+        "spark_lag_max": 5000
+      },
+      "latency_ms": {
+        "end_to_end_ms": {
+          "max": 37681.0,
+          "mean": 26778.0,
+          "min": 14641.0,
+          "n": 5000,
+          "p50": 26858.0,
+          "p95": 36323.0,
+          "p99": 37447.0
+        },
+        "http_accept_ms": {
+          "n": 0
+        },
+        "persist_ms": {
+          "max": 22928.0,
+          "mean": 12195.0,
+          "min": 218.0,
+          "n": 5000,
+          "p50": 12372.0,
+          "p95": 21599.0,
+          "p99": 22721.0
+        },
+        "producer_ack_ms": {
+          "max": 51.0,
+          "mean": 36.3,
+          "min": 3.6,
+          "n": 5000,
+          "p50": 36.5,
+          "p95": 48.7,
+          "p99": 50.1
+        },
+        "stream_ms": {
+          "max": 14767.0,
+          "mean": 14583.0,
+          "min": 14401.0,
+          "n": 5000,
+          "p50": 14678.0,
+          "p95": 14748.0,
+          "p99": 14759.0
+        }
+      },
+      "missing": 0,
+      "persisted": 5000,
+      "persisted_eps_overall": 132.6,
+      "persisted_eps_steady": 217.4,
+      "resources": {
+        "api": {
+          "cpu_pct_max": 2.58,
+          "cpu_pct_mean": 0.7,
+          "mem_mib_max": 192.2,
+          "mem_mib_mean": 191.4,
+          "samples": 19
+        },
+        "frontend": {
+          "cpu_pct_max": 3.91,
+          "cpu_pct_mean": 0.5,
+          "mem_mib_max": 14.0,
+          "mem_mib_mean": 13.0,
+          "samples": 19
+        },
+        "kafka": {
+          "cpu_pct_max": 127.92,
+          "cpu_pct_mean": 27.1,
+          "mem_mib_max": 569.5,
+          "mem_mib_mean": 503.1,
+          "samples": 19
+        },
+        "persistence-consumer": {
+          "cpu_pct_max": 60.85,
+          "cpu_pct_mean": 35.6,
+          "mem_mib_max": 157.2,
+          "mem_mib_mean": 151.4,
+          "samples": 19
+        },
+        "postgres": {
+          "cpu_pct_max": 23.35,
+          "cpu_pct_mean": 13.4,
+          "mem_mib_max": 113.3,
+          "mem_mib_mean": 102.5,
+          "samples": 19
+        },
+        "redis": {
+          "cpu_pct_max": 4.84,
+          "cpu_pct_mean": 1.7,
+          "mem_mib_max": 7.6,
+          "mem_mib_mean": 6.6,
+          "samples": 19
+        },
+        "spark": {
+          "cpu_pct_max": 532.1,
+          "cpu_pct_mean": 133.4,
+          "mem_mib_max": 2757.6,
+          "mem_mib_mean": 2721.1,
+          "samples": 19
+        }
+      },
+      "scored_duplicates_on_kafka": 0,
+      "send_seconds": 0.13,
+      "source": "kafka",
+      "submitted_eps": 39072.1,
+      "target_rate_eps": null,
+      "window": {
+        "t_begin": 1794757348.0484,
+        "t_done": 1794757386.7507172,
+        "t_sent": 1794757348.1763685
+      }
+    }
+  ],
+  "machine": {
+    "docker": {
+      "kernel": "6.18.58.1-microsoft-standard-WSL2",
+      "os": "Docker Desktop",
+      "server": "29.9.2",
+      "vm_cpus": 16,
+      "vm_mem_gib": 7.61
+    },
+    "host_ram_gb": 15.7,
+    "logical_cpus": 16,
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10"
+  },
+  "measured": true,
+  "project": "fraudstream-p12",
+  "started_at": "2026-11-15T15:42:26.267659+00:00",
+  "volume_bytes_after": {
+    "kafka-data": 1887192816,
+    "postgres-data": 166584037,
+    "redis-data": 764785,
+    "spark-checkpoints": 55207601
+  },
+  "volume_bytes_before": {
+    "kafka-data": 1862445471,
+    "postgres-data": 150683365,
+    "redis-data": 700979,
+    "spark-checkpoints": 56092252
+  },
+  "volume_growth_bytes": {
+    "kafka-data": 24747345,
+    "postgres-data": 15900672,
+    "redis-data": 63806,
+    "spark-checkpoints": -884651
+  }
+}

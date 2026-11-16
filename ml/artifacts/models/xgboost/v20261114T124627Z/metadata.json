@@ -1,0 +1,158 @@
+{
+  "model_name": "xgboost",
+  "version": "v20261114T124627Z",
+  "algorithm": "xgboost",
+  "kind": "supervised",
+  "score_semantics": "uncalibrated class-weighted score in [0,1] (not a calibrated probability)",
+  "trained_at": "2026-11-14T12:47:22.679690+00:00",
+  "training_seconds": 6.05,
+  "dataset": {
+    "name": "synthetic-fraudstream",
+    "version": "1.0",
+    "source": "synthetic",
+    "content_sha256": "b57801b3b941b43fa897e9115ad3587803c1974321f1357540f190652d5ba3e9",
+    "rows": 139517
+  },
+  "feature_config_version": "fc-1.0",
+  "features": {
+    "numeric": [
+      "amount",
+      "log_amount",
+      "hour_of_day",
+      "day_of_week",
+      "is_night",
+      "tx_count_1m",
+      "tx_count_5m",
+      "tx_count_1h",
+      "spend_sum_15m",
+      "spend_sum_1h",
+      "hist_tx_count",
+      "hist_mean_amount",
+      "hist_std_amount",
+      "amount_zscore",
+      "amount_to_mean_ratio",
+      "failed_count_1h",
+      "failed_ratio_hist",
+      "seconds_since_prev",
+      "is_new_device",
+      "is_new_location",
+      "is_new_merchant",
+      "merchant_frequency",
+      "geo_velocity_kmh",
+      "has_history",
+      "is_high_risk_category"
+    ],
+    "categorical": [
+      "merchant_category",
+      "channel",
+      "transaction_type",
+      "status"
+    ]
+  },
+  "hyperparameters": {
+    "n_estimators": 300,
+    "max_depth": 5,
+    "learning_rate": 0.08,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9,
+    "min_child_weight": 2
+  },
+  "seed": 7,
+  "threshold": 0.8471057415008545,
+  "threshold_strategy": "max_f1",
+  "split": {
+    "strategy": "temporal (event_time ordered) + customer holdout",
+    "train_end": "2026-01-05T14:27:29.436127+00:00",
+    "validation_end": "2026-01-05T19:12:21.115225+00:00",
+    "sizes": {
+      "train": 72034,
+      "validation": 24079,
+      "test": 24155,
+      "unseen_customer_test": 3749
+    },
+    "positives": {
+      "train": 3678,
+      "validation": 1158,
+      "test": 1211,
+      "unseen_customer_test": 203
+    },
+    "imbalance": {
+      "train_neg_to_pos": 18.59
+    }
+  },
+  "metrics": {
+    "validation": {
+      "threshold": 0.8471057415008545,
+      "support": 24079,
+      "positives": 1158,
+      "precision": 0.9921671018276762,
+      "recall": 0.9844559585492227,
+      "f1": 0.988296488946684,
+      "roc_auc": 0.9999436752760231,
+      "pr_auc": 0.9990042936062745,
+      "false_positive_rate": 0.0003926530256097029,
+      "false_negative_rate": 0.015544041450777202,
+      "confusion_matrix": {
+        "tn": 22912,
+        "fp": 9,
+        "fn": 18,
+        "tp": 1140
+      },
+      "pr_auc_definition": "average_precision (step-wise, sklearn)"
+    },
+    "test": {
+      "threshold": 0.8471057415008545,
+      "support": 24155,
+      "positives": 1211,
+      "precision": 0.9942100909842845,
+      "recall": 0.9925681255161024,
+      "f1": 0.9933884297520661,
+      "roc_auc": 0.9999809250858299,
+      "pr_auc": 0.9996434295692959,
+      "false_positive_rate": 0.00030509065550906553,
+      "false_negative_rate": 0.007431874483897605,
+      "confusion_matrix": {
+        "tn": 22937,
+        "fp": 7,
+        "fn": 9,
+        "tp": 1202
+      },
+      "pr_auc_definition": "average_precision (step-wise, sklearn)"
+    },
+    "unseen_customer_test": {
+      "threshold": 0.8471057415008545,
+      "support": 3749,
+      "positives": 203,
+      "precision": 0.9852941176470589,
+      "recall": 0.9901477832512315,
+      "f1": 0.9877149877149877,
+      "roc_auc": 0.9999430427401721,
+      "pr_auc": 0.9989897120807957,
+      "false_positive_rate": 0.0008460236886632825,
+      "false_negative_rate": 0.009852216748768473,
+      "confusion_matrix": {
+        "tn": 3543,
+        "fp": 3,
+        "fn": 2,
+        "tp": 201
+      },
+      "pr_auc_definition": "average_precision (step-wise, sklearn)"
+    }
+  },
+  "inference_latency": {
+    "mean_ms": 8.642174999404233,
+    "p50_ms": 8.310899982461706,
+    "p95_ms": 11.207405047025532,
+    "p99_ms": 12.711732988827855,
+    "samples": 200
+  },
+  "environment": {
+    "python": "3.12.10",
+    "sklearn": "1.5.2",
+    "xgboost": "2.1.3",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "artifact_path": "models/xgboost/v20261114T124627Z/model.joblib"
+}

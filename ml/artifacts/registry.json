@@ -1,0 +1,50 @@
+{
+  "models": [
+    {
+      "model_name": "logistic_regression",
+      "version": "v20261114T124627Z",
+      "kind": "supervised",
+      "artifact_path": "models/logistic_regression/v20261114T124627Z/model.joblib",
+      "trained_at": "2026-11-14T12:46:34.853709+00:00",
+      "feature_config_version": "fc-1.0",
+      "threshold": 0.8735473677876944
+    },
+    {
+      "model_name": "random_forest",
+      "version": "v20261114T124627Z",
+      "kind": "supervised",
+      "artifact_path": "models/random_forest/v20261114T124627Z/model.joblib",
+      "trained_at": "2026-11-14T12:47:12.019068+00:00",
+      "feature_config_version": "fc-1.0",
+      "threshold": 0.5669964305309069
+    },
+    {
+      "model_name": "xgboost",
+      "version": "v20261114T124627Z",
+      "kind": "supervised",
+      "artifact_path": "models/xgboost/v20261114T124627Z/model.joblib",
+      "trained_at": "2026-11-14T12:47:22.679690+00:00",
+      "feature_config_version": "fc-1.0",
+      "threshold": 0.8471057415008545
+    },
+    {
+      "model_name": "isolation_forest",
+      "version": "v20261114T124627Z",
+      "kind": "anomaly",
+      "artifact_path": "models/isolation_forest/v20261114T124627Z/model.joblib",
+      "trained_at": "2026-11-14T12:47:39.291838+00:00",
+      "feature_config_version": "fc-1.0",
+      "threshold": 0.8759474692506316
+    }
+  ],
+  "active": {
+    "supervised": {
+      "model_name": "xgboost",
+      "version": "v20261114T124627Z"
+    },
+    "anomaly": {
+      "model_name": "isolation_forest",
+      "version": "v20261114T124627Z"
+    }
+  }
+}

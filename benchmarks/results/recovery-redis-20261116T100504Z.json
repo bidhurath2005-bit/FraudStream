@@ -1,0 +1,9 @@
+{
+  "project": "fraudstream-p15",
+  "events_during_outage": 200,
+  "persisted_during_outage": 200,
+  "seconds_to_persist_during_outage": 16.9,
+  "seconds_restart_to_processor_reported": 9.2,
+  "seconds_restart_to_live_feed": 15.3,
+  "live_feed_events_seen_after_restart": 60
+}

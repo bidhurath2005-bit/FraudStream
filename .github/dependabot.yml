@@ -1,0 +1,13 @@
+# Keeps the SHA-pinned GitHub Actions current (each update arrives as a reviewable pull request).
+# Application dependencies (pip / npm) are deliberately NOT auto-updated: they are pinned for reproducibility and the
+# ML libraries must change together in backend/requirements.txt and infrastructure/spark/requirements-spark.txt.
+# Their known advisories are tracked by the CI audit gate (.github/security/audit-baseline.json, SECURITY.md).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        patterns: ["*"]

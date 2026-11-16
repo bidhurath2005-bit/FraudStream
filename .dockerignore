@@ -1,0 +1,16 @@
+.venv
+**/__pycache__
+**/.pytest_cache
+**/*.pyc
+**/tests
+frontend
+data
+ml/artifacts
+.env
+.env.*
+.dev-credentials.txt
+*.db
+*.log
+docs
+benchmarks/results
+backups

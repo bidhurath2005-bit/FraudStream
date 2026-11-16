@@ -1,0 +1,796 @@
+{
+  "args": {
+    "groups": "dashboard,analytics",
+    "levels": "1,8,32",
+    "login_max_concurrency": 8,
+    "project": "fraudstream-p12",
+    "seconds": 6.0
+  },
+  "benchmark": "api",
+  "client": "httpx AsyncClient on the Windows host -> nginx (127.0.0.1) -> api container",
+  "container_limits": {
+    "api": {
+      "mem_limit_mib": 1536,
+      "nano_cpus": null
+    },
+    "frontend": {
+      "mem_limit_mib": 128,
+      "nano_cpus": null
+    },
+    "kafka": {
+      "mem_limit_mib": 1024,
+      "nano_cpus": null
+    },
+    "persistence-consumer": {
+      "mem_limit_mib": 512,
+      "nano_cpus": null
+    },
+    "postgres": {
+      "mem_limit_mib": 1024,
+      "nano_cpus": null
+    },
+    "redis": {
+      "mem_limit_mib": 256,
+      "nano_cpus": null
+    },
+    "spark": {
+      "mem_limit_mib": 3072,
+      "nano_cpus": null
+    }
+  },
+  "endpoints": {
+    "GET /analytics/confusion": {
+      "group": "analytics",
+      "levels": [
+        {
+          "concurrency": 1,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 230.0,
+            "mean": 126.4,
+            "min": 83.4,
+            "n": 48,
+            "p50": 113.9,
+            "p95": 207.8,
+            "p99": null
+          },
+          "mean_response_bytes": 407,
+          "ok_rps": 7.9,
+          "requests": 48,
+          "seconds": 6.07,
+          "status": {
+            "200": 48
+          },
+          "throughput_rps": 7.9
+        },
+        {
+          "concurrency": 8,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 476.0,
+            "mean": 245.1,
+            "min": 138.4,
+            "n": 200,
+            "p50": 207.4,
+            "p95": 436.0,
+            "p99": 469.1
+          },
+          "mean_response_bytes": 407,
+          "ok_rps": 31.9,
+          "requests": 200,
+          "seconds": 6.27,
+          "status": {
+            "200": 200
+          },
+          "throughput_rps": 31.9
+        },
+        {
+          "concurrency": 32,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 1453.3,
+            "mean": 936.1,
+            "min": 377.6,
+            "n": 219,
+            "p50": 954.0,
+            "p95": 1324.5,
+            "p99": 1365.1
+          },
+          "mean_response_bytes": 407,
+          "ok_rps": 32.2,
+          "requests": 219,
+          "seconds": 6.81,
+          "status": {
+            "200": 219
+          },
+          "throughput_rps": 32.2
+        }
+      ]
+    },
+    "GET /analytics/geo": {
+      "group": "analytics",
+      "levels": [
+        {
+          "concurrency": 1,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 208.6,
+            "mean": 139.7,
+            "min": 111.3,
+            "n": 43,
+            "p50": 135.3,
+            "p95": 177.4,
+            "p99": null
+          },
+          "mean_response_bytes": 6490,
+          "ok_rps": 7.2,
+          "requests": 43,
+          "seconds": 6.01,
+          "status": {
+            "200": 43
+          },
+          "throughput_rps": 7.2
+        },
+        {
+          "concurrency": 8,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 689.4,
+            "mean": 334.8,
+            "min": 172.7,
+            "n": 145,
+            "p50": 267.5,
+            "p95": 574.5,
+            "p99": 671.0
+          },
+          "mean_response_bytes": 6492,
+          "ok_rps": 23.6,
+          "requests": 145,
+          "seconds": 6.15,
+          "status": {
+            "200": 145
+          },
+          "throughput_rps": 23.6
+        },
+        {
+          "concurrency": 32,
+          "error_rate": 0.5479,
+          "latency_ms": {
+            "max": 1493.6,
+            "mean": 680.5,
+            "min": 208.1,
+            "n": 292,
+            "p50": 609.5,
+            "p95": 1211.0,
+            "p99": 1451.3
+          },
+          "mean_response_bytes": 2955,
+          "ok_rps": 20.2,
+          "requests": 292,
+          "seconds": 6.53,
+          "status": {
+            "200": 132,
+            "500": 160
+          },
+          "throughput_rps": 44.7
+        }
+      ]
+    },
+    "GET /analytics/hourly": {
+      "group": "analytics",
+      "levels": [
+        {
+          "concurrency": 1,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 358.8,
+            "mean": 285.8,
+            "min": 249.5,
+            "n": 22,
+            "p50": 277.2,
+            "p95": 350.7,
+            "p99": null
+          },
+          "mean_response_bytes": 976,
+          "ok_rps": 3.5,
+          "requests": 22,
+          "seconds": 6.29,
+          "status": {
+            "200": 22
+          },
+          "throughput_rps": 3.5
+        },
+        {
+          "concurrency": 8,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 536.7,
+            "mean": 360.4,
+            "min": 270.8,
+            "n": 137,
+            "p50": 346.8,
+            "p95": 481.9,
+            "p99": 519.8
+          },
+          "mean_response_bytes": 976,
+          "ok_rps": 21.8,
+          "requests": 137,
+          "seconds": 6.29,
+          "status": {
+            "200": 137
+          },
+          "throughput_rps": 21.8
+        },
+        {
+          "concurrency": 32,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 1688.2,
+            "mean": 1126.1,
+            "min": 638.6,
+            "n": 180,
+            "p50": 1137.6,
+            "p95": 1426.0,
+            "p99": 1634.8
+          },
+          "mean_response_bytes": 976,
+          "ok_rps": 26.7,
+          "requests": 180,
+          "seconds": 6.75,
+          "status": {
+            "200": 180
+          },
+          "throughput_rps": 26.7
+        }
+      ]
+    },
+    "GET /analytics/merchants": {
+      "group": "analytics",
+      "levels": [
+        {
+          "concurrency": 1,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 258.8,
+            "mean": 211.4,
+            "min": 190.9,
+            "n": 29,
+            "p50": 208.5,
+            "p95": 246.7,
+            "p99": null
+          },
+          "mean_response_bytes": 4269,
+          "ok_rps": 4.7,
+          "requests": 29,
+          "seconds": 6.13,
+          "status": {
+            "200": 29
+          },
+          "throughput_rps": 4.7
+        },
+        {
+          "concurrency": 8,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 992.3,
+            "mean": 513.9,
+            "min": 287.1,
+            "n": 96,
+            "p50": 427.0,
+            "p95": 930.3,
+            "p99": null
+          },
+          "mean_response_bytes": 4268,
+          "ok_rps": 15.1,
+          "requests": 96,
+          "seconds": 6.37,
+          "status": {
+            "200": 96
+          },
+          "throughput_rps": 15.1
+        },
+        {
+          "concurrency": 32,
+          "error_rate": 0.0283,
+          "latency_ms": {
+            "max": 2952.4,
+            "mean": 2011.6,
+            "min": 806.6,
+            "n": 106,
+            "p50": 2061.1,
+            "p95": 2843.9,
+            "p99": 2943.7
+          },
+          "mean_response_bytes": 4149,
+          "ok_rps": 13.8,
+          "requests": 106,
+          "seconds": 7.44,
+          "status": {
+            "200": 103,
+            "500": 3
+          },
+          "throughput_rps": 14.2
+        }
+      ]
+    },
+    "GET /analytics/overview": {
+      "group": "dashboard",
+      "levels": [
+        {
+          "concurrency": 1,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 537.6,
+            "mean": 272.5,
+            "min": 173.9,
+            "n": 23,
+            "p50": 251.0,
+            "p95": 406.5,
+            "p99": null
+          },
+          "mean_response_bytes": 957,
+          "ok_rps": 3.7,
+          "requests": 23,
+          "seconds": 6.27,
+          "status": {
+            "200": 23
+          },
+          "throughput_rps": 3.7
+        },
+        {
+          "concurrency": 8,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 941.5,
+            "mean": 433.1,
+            "min": 235.8,
+            "n": 113,
+            "p50": 376.7,
+            "p95": 746.9,
+            "p99": 906.0
+          },
+          "mean_response_bytes": 957,
+          "ok_rps": 18.1,
+          "requests": 113,
+          "seconds": 6.24,
+          "status": {
+            "200": 113
+          },
+          "throughput_rps": 18.1
+        },
+        {
+          "concurrency": 32,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 2469.2,
+            "mean": 1384.2,
+            "min": 809.3,
+            "n": 142,
+            "p50": 1365.6,
+            "p95": 1866.4,
+            "p99": 2008.1
+          },
+          "mean_response_bytes": 957,
+          "ok_rps": 20.5,
+          "requests": 142,
+          "seconds": 6.92,
+          "status": {
+            "200": 142
+          },
+          "throughput_rps": 20.5
+        }
+      ]
+    },
+    "GET /analytics/patterns?minutes=1440": {
+      "group": "analytics",
+      "levels": [
+        {
+          "concurrency": 1,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 675.0,
+            "mean": 523.6,
+            "min": 467.4,
+            "n": 12,
+            "p50": 514.5,
+            "p95": 675.0,
+            "p99": null
+          },
+          "mean_response_bytes": 2488,
+          "ok_rps": 1.9,
+          "requests": 12,
+          "seconds": 6.28,
+          "status": {
+            "200": 12
+          },
+          "throughput_rps": 1.9
+        },
+        {
+          "concurrency": 8,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 3296.6,
+            "mean": 2536.7,
+            "min": 689.7,
+            "n": 24,
+            "p50": 2703.2,
+            "p95": 3252.3,
+            "p99": null
+          },
+          "mean_response_bytes": 2488,
+          "ok_rps": 2.8,
+          "requests": 24,
+          "seconds": 8.66,
+          "status": {
+            "200": 24
+          },
+          "throughput_rps": 2.8
+        },
+        {
+          "concurrency": 32,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 13699.4,
+            "mean": 7190.5,
+            "min": 1499.7,
+            "n": 48,
+            "p50": 7560.8,
+            "p95": 11030.4,
+            "p99": null
+          },
+          "mean_response_bytes": 2488,
+          "ok_rps": 3.2,
+          "requests": 48,
+          "seconds": 15.08,
+          "status": {
+            "200": 48
+          },
+          "throughput_rps": 3.2
+        }
+      ]
+    },
+    "GET /analytics/timeline?minutes=30": {
+      "group": "dashboard",
+      "levels": [
+        {
+          "concurrency": 1,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 351.6,
+            "mean": 268.3,
+            "min": 218.8,
+            "n": 23,
+            "p50": 266.0,
+            "p95": 342.0,
+            "p99": null
+          },
+          "mean_response_bytes": 2954,
+          "ok_rps": 3.7,
+          "requests": 23,
+          "seconds": 6.17,
+          "status": {
+            "200": 23
+          },
+          "throughput_rps": 3.7
+        },
+        {
+          "concurrency": 8,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 540.4,
+            "mean": 316.0,
+            "min": 261.3,
+            "n": 155,
+            "p50": 303.2,
+            "p95": 426.7,
+            "p99": 538.3
+          },
+          "mean_response_bytes": 2955,
+          "ok_rps": 24.7,
+          "requests": 155,
+          "seconds": 6.28,
+          "status": {
+            "200": 155
+          },
+          "throughput_rps": 24.7
+        },
+        {
+          "concurrency": 32,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 1545.5,
+            "mean": 979.0,
+            "min": 644.3,
+            "n": 205,
+            "p50": 976.9,
+            "p95": 1241.3,
+            "p99": 1429.3
+          },
+          "mean_response_bytes": 2955,
+          "ok_rps": 30.7,
+          "requests": 205,
+          "seconds": 6.67,
+          "status": {
+            "200": 205
+          },
+          "throughput_rps": 30.7
+        }
+      ]
+    },
+    "GET /analytics/velocity": {
+      "group": "analytics",
+      "levels": [
+        {
+          "concurrency": 1,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 72.6,
+            "mean": 24.8,
+            "min": 13.3,
+            "n": 243,
+            "p50": 21.3,
+            "p95": 42.5,
+            "p99": 58.7
+          },
+          "mean_response_bytes": 1175,
+          "ok_rps": 40.4,
+          "requests": 243,
+          "seconds": 6.02,
+          "status": {
+            "200": 243
+          },
+          "throughput_rps": 40.4
+        },
+        {
+          "concurrency": 8,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 858.3,
+            "mean": 151.2,
+            "min": 61.5,
+            "n": 320,
+            "p50": 99.7,
+            "p95": 403.9,
+            "p99": 792.8
+          },
+          "mean_response_bytes": 1175,
+          "ok_rps": 52.3,
+          "requests": 320,
+          "seconds": 6.11,
+          "status": {
+            "200": 320
+          },
+          "throughput_rps": 52.3
+        },
+        {
+          "concurrency": 32,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 4997.7,
+            "mean": 962.3,
+            "min": 127.3,
+            "n": 209,
+            "p50": 776.4,
+            "p95": 2682.9,
+            "p99": 3740.0
+          },
+          "mean_response_bytes": 1175,
+          "ok_rps": 31.8,
+          "requests": 209,
+          "seconds": 6.58,
+          "status": {
+            "200": 209
+          },
+          "throughput_rps": 31.8
+        }
+      ]
+    },
+    "GET /infrastructure/status": {
+      "group": "dashboard",
+      "levels": [
+        {
+          "concurrency": 1,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 1135.4,
+            "mean": 157.4,
+            "min": 37.9,
+            "n": 39,
+            "p50": 51.3,
+            "p95": 1053.4,
+            "p99": null
+          },
+          "mean_response_bytes": 7953,
+          "ok_rps": 6.4,
+          "requests": 39,
+          "seconds": 6.14,
+          "status": {
+            "200": 39
+          },
+          "throughput_rps": 6.4
+        },
+        {
+          "concurrency": 8,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 1136.7,
+            "mean": 131.1,
+            "min": 50.3,
+            "n": 384,
+            "p50": 76.6,
+            "p95": 273.3,
+            "p99": 1103.9
+          },
+          "mean_response_bytes": 7952,
+          "ok_rps": 56.3,
+          "requests": 384,
+          "seconds": 6.82,
+          "status": {
+            "200": 384
+          },
+          "throughput_rps": 56.3
+        },
+        {
+          "concurrency": 32,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 5231.3,
+            "mean": 1212.4,
+            "min": 175.0,
+            "n": 164,
+            "p50": 869.2,
+            "p95": 3757.2,
+            "p99": 4969.6
+          },
+          "mean_response_bytes": 7952,
+          "ok_rps": 25.0,
+          "requests": 164,
+          "seconds": 6.56,
+          "status": {
+            "200": 164
+          },
+          "throughput_rps": 25.0
+        }
+      ]
+    },
+    "GET /system/status": {
+      "group": "dashboard",
+      "levels": [
+        {
+          "concurrency": 1,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 97.0,
+            "mean": 34.6,
+            "min": 12.5,
+            "n": 174,
+            "p50": 31.6,
+            "p95": 68.1,
+            "p99": 86.5
+          },
+          "mean_response_bytes": 525,
+          "ok_rps": 28.9,
+          "requests": 174,
+          "seconds": 6.02,
+          "status": {
+            "200": 174
+          },
+          "throughput_rps": 28.9
+        },
+        {
+          "concurrency": 8,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 875.8,
+            "mean": 146.1,
+            "min": 35.4,
+            "n": 332,
+            "p50": 100.8,
+            "p95": 390.0,
+            "p99": 549.3
+          },
+          "mean_response_bytes": 525,
+          "ok_rps": 54.2,
+          "requests": 332,
+          "seconds": 6.12,
+          "status": {
+            "200": 332
+          },
+          "throughput_rps": 54.2
+        },
+        {
+          "concurrency": 32,
+          "error_rate": 0.0,
+          "latency_ms": {
+            "max": 3564.7,
+            "mean": 909.3,
+            "min": 126.4,
+            "n": 218,
+            "p50": 715.8,
+            "p95": 2387.7,
+            "p99": 3134.0
+          },
+          "mean_response_bytes": 525,
+          "ok_rps": 33.4,
+          "requests": 218,
+          "seconds": 6.52,
+          "status": {
+            "200": 218
+          },
+          "throughput_rps": 33.4
+        }
+      ]
+    }
+  },
+  "machine": {
+    "docker": {
+      "kernel": "6.18.58.1-microsoft-standard-WSL2",
+      "os": "Docker Desktop",
+      "server": "29.9.2",
+      "vm_cpus": 16,
+      "vm_mem_gib": 7.61
+    },
+    "host_ram_gb": 15.7,
+    "logical_cpus": 16,
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10"
+  },
+  "measured": true,
+  "project": "fraudstream-p12",
+  "rate_limits_during_run": {
+    "API_RATE_LIMIT_PER_MINUTE": "10000000",
+    "LOGIN_RATE_LIMIT_PER_MINUTE": "100000"
+  },
+  "resources": {
+    "api": {
+      "cpu_pct_max": 167.51,
+      "cpu_pct_mean": 48.1,
+      "mem_mib_max": 581.1,
+      "mem_mib_mean": 328.8,
+      "samples": 100
+    },
+    "frontend": {
+      "cpu_pct_max": 9.71,
+      "cpu_pct_mean": 1.8,
+      "mem_mib_max": 20.5,
+      "mem_mib_mean": 17.5,
+      "samples": 100
+    },
+    "kafka": {
+      "cpu_pct_max": 205.0,
+      "cpu_pct_mean": 30.9,
+      "mem_mib_max": 792.9,
+      "mem_mib_mean": 708.8,
+      "samples": 100
+    },
+    "persistence-consumer": {
+      "cpu_pct_max": 47.35,
+      "cpu_pct_mean": 3.5,
+      "mem_mib_max": 163.1,
+      "mem_mib_mean": 152.8,
+      "samples": 100
+    },
+    "postgres": {
+      "cpu_pct_max": 1449.13,
+      "cpu_pct_mean": 487.1,
+      "mem_mib_max": 547.7,
+      "mem_mib_mean": 311.7,
+      "samples": 100
+    },
+    "redis": {
+      "cpu_pct_max": 9.16,
+      "cpu_pct_mean": 2.2,
+      "mem_mib_max": 17.9,
+      "mem_mib_mean": 14.5,
+      "samples": 100
+    },
+    "spark": {
+      "cpu_pct_max": 42.45,
+      "cpu_pct_mean": 4.4,
+      "mem_mib_max": 1940.5,
+      "mem_mib_mean": 1929.5,
+      "samples": 100
+    }
+  },
+  "started_at": "2026-11-15T16:35:40.767663+00:00"
+}
